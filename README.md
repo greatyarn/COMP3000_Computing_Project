@@ -6,7 +6,7 @@
 
 ## Supervisor
 
-> [Dr Hai-Van Dang]([Dr Hai-Van Dang - University of Plymouth](https://www.plymouth.ac.uk/staff/hai-van-dang))
+> [Dr Hai-Van Dang - University of Plymouth](https://www.plymouth.ac.uk/staff/hai-van-dang)
 
 ---
 
