@@ -4,6 +4,14 @@
 
 ---
 
+## Supervisor
+
+> [Dr Hai-Van Dang]([Dr Hai-Van Dang - University of Plymouth](https://www.plymouth.ac.uk/staff/hai-van-dang))
+
+---
+
+
+
 ## Resources
 
 | Github Repository | https://github.com/greatyarn/COMP3000_Computing_Project                                        |
@@ -12,6 +20,21 @@
 | creative commons  | https://creativecommons.org/                                                                   |
 | LuxAI             | https://luxai.com/robot-for-teaching-children-with-autism-at-home/                             |
 | ROS Robots        | https://robots.ros.org/qtrobot/                                                                |
+
+---
+
+## Project Vision
+
+The QTrobot is a toddler-like humanoid robot built by LuxAI. This project, Audio
+Authentication via Voice Recognition on QTrobot, or AAVR for short, is a software for
+patients who would like to allow for an easy way to authenticate themselves through
+robots with the use of their voice. This authentication process with the use of a human
+voice allows for patients to retrieve their medical records, which might contain their
+age, height, and weight. This method of authenticating by voice is safer and more
+convenient as it reduces the amount of human interaction that is needed, therefore
+allowing for an improvement of personal data security as a whole. With voice
+authentication, this allows for multiple different patient profiles to be set up
+conveniently.
 
 ---
 
