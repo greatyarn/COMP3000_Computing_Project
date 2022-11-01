@@ -1,3 +1,0 @@
-Output
-- Calculating by percentage if the robot can recognise the correct human voice
-- Creating a user survey on how convenient it is to use voice recognistion to authenticate
