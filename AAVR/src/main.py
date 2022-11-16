@@ -16,6 +16,10 @@ if __name__ == '__main__':
     rospy.init_node('main')
     rospy.loginfo("AAVR started")
 
+    speechSay = rospy.ServiceProxy('/qt_vosk_app/speech_say', SpeechSay)
+
+    greet()
+
     try:
         rospy.spin()
     except KeyboardInterrupt:
