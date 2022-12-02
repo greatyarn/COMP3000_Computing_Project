@@ -1,29 +1,31 @@
-#!/usr/bin/env python
-import sys
+#!/usr/bin/env python3
+import wave
 import rospy
+from audio_common_msgs.msg import AudioData
 
-from qt_robot_interface.srv import *
-from qt_vosk_app.srv import SpeechSay
-from qt_gesture_controller.srv import gesture_play
-from qt_nuitrack_app.msg import Gestures
+AUDIO_RATE = 16000
+AUDIO_CHANNELS = 1
+AUDIO_WIDTH = 2
 
-def greet():
-    # greeting
-    speechSay("Hello! This is the startup process")
-    speechSay("This is a test")
+def channel_callback(msg, wf):
+    wf.writeframes(msg.data)
 
+# main
 if __name__ == '__main__':
-    rospy.init_node('main')
-    rospy.loginfo("AAVR started")
 
+    # call the relevant service
+    rospy.init_node('audio_record')
+    
+    # Makes a new file called "recording.wav" 
+    wf = wave.open("recording.wav", 'wb')
+    wf.setnchannels(AUDIO_CHANNELS)
+    wf.setsampwidth(AUDIO_WIDTH)
+    wf.setframerate(AUDIO_RATE)
+    
+    # Channel 0 is used because it is the processed audio from the microphone
+    rospy.Subscriber('/qt_respeaker_app/channel0', AudioData, channel_callback, wf)
 
-    speechSay = rospy.ServiceProxy('/qt_vosk_app/speech_say', SpeechSay)
-
-    greet()
-
-    try:
-        rospy.spin()
-    except KeyboardInterrupt:
-        pass
-
-    rospy.loginfo("finished!")
+    print("recording...")
+    rospy.spin()
+    print("saving...")
+    wf.close()
