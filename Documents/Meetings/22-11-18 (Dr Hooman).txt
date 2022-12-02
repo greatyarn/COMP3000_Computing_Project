@@ -1,0 +1,21 @@
+Visual and Spoken interfaces.
+Dealing with Voice Biometric, 
+- Acoustic signal
+- freqwuency domain is easier to analysise the signal
+
+Fourier Transform - Wikipedia
+
+Voice Speech: Fundamental Frequency.
+
+time domain, frequenmcy domain, 
+
+fouriour transform (https://en.wikipedia.org/wiki/Fourier_transform)
+
+MFCC (Time domain to frequency domain)
+
+https://en.wikipedia.org/wiki/Bayes%27_theorem
+One of the approach, based on probability
+
+https://huggingface.co/models
+https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)
+https://openai.com/

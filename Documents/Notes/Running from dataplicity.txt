@@ -1,0 +1,6 @@
+1. Run `sudo qtrobot`
+2. Type password
+
+- viola
+
+Reason why, it's dataplicity makes it's own user called dataplicity, so that breaks some of the ros packages within
