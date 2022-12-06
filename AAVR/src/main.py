@@ -36,7 +36,7 @@ if __name__ == '__main__':
     except rospy.ServiceException as e:
         print("Service call failed: %s"%e)
          
-    temp = str(uuid.uuid4())
+   
 
     wf = wave.open(temp + ".wav", 'wb')
     wf.setnchannels(AUDIO_CHANNELS)
