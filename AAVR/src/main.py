@@ -20,11 +20,6 @@ if __name__ == '__main__':
     # call the relevant service
     rospy.init_node('audio_record')
     
-   
-    
-    # Channel 0 is used because it is the processed audio from the microphone
-    rospy.Subscriber('/qt_respeaker_app/channel0', AudioData, channel_callback, wf)
-
     # Says "recording" and waits for the user to say something
     speechSay("recording in 5 seconds")
 
@@ -36,6 +31,9 @@ if __name__ == '__main__':
     wf.setnchannels(AUDIO_CHANNELS)
     wf.setsampwidth(AUDIO_WIDTH)
     wf.setframerate(AUDIO_RATE)
+
+    # Channel 0 is used because it is the processed audio from the microphone
+    rospy.Subscriber('/qt_respeaker_app/channel0', AudioData, channel_callback, wf)
 
     print("recording...")
     rospy.spin()
