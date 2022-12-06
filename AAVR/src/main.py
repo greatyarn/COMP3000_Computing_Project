@@ -11,21 +11,29 @@ AUDIO_WIDTH = 2
 def channel_callback(msg, wf):
     wf.writeframes(msg.data)
 
-# Define Speech Service Class
-speechSay = rospy.ServiceProxy('/qt_respeaker_app/speech_say', speech_say)
-
 # main
 if __name__ == '__main__':
 
     # call the relevant service
     rospy.init_node('audio_record')
     
-    # Says "recording" and waits for the user to say something
-    speechSay("recording in 5 seconds")
+    # Define Speech Service Class
+    speechSay = rospy.ServiceProxy('/qt_respeaker_app/speech_say', speech_say)
+
+    # Waits for the service to be available
+    rospy.wait_for_service('/qt_respeaker_app/speech_say')
 
     # Waits for 5 seconds
     rospy.sleep(5)
-    
+
+    try:
+        # Calls the service
+        # Calls the service
+        speechSay("recording in 5 seconds")
+        rospy.sleep(5)
+    except rospy.ServiceException as e:
+        print("Service call failed: %s"%e)
+         
      # Makes a new file called "recording.wav" 
     wf = wave.open("recording.wav", 'wb')
     wf.setnchannels(AUDIO_CHANNELS)
