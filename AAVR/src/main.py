@@ -27,15 +27,15 @@ if __name__ == '__main__':
     # Waits for the service to be available
     rospy.wait_for_service('/qt_robot/speech/say')
 
+    # Log that the service is now available
     try:
         # Calls the service
-        # Calls the service
-        speechSay("recording in 5 seconds")
+        speechSay("Recording in five seconds")
         rospy.sleep(5)
     except rospy.ServiceException as e:
         print("Service call failed: %s"%e)
          
-     # Makes a new file called "recording.wav" 
+ 
     wf = wave.open("recording.wav", 'wb')
     wf.setnchannels(AUDIO_CHANNELS)
     wf.setsampwidth(AUDIO_WIDTH)
@@ -45,6 +45,8 @@ if __name__ == '__main__':
     rospy.Subscriber('/qt_respeaker_app/channel0', AudioData, channel_callback, wf)
 
     print("recording...")
+
+    # Waits
     rospy.spin()
     print("saving...")
     wf.close()
