@@ -2,7 +2,7 @@
 import wave
 import rospy
 from audio_common_msgs.msg import AudioData
-from qt_respeaker_app.srv import SpeechSay
+from qt_robot_interface.srv import *
 
 AUDIO_RATE = 16000
 AUDIO_CHANNELS = 1
@@ -12,7 +12,7 @@ def channel_callback(msg, wf):
     wf.writeframes(msg.data)
 
 # Define Speech Service Class
-speechSay = rospy.ServiceProxy('/qt_respeaker_app/speech_say', SpeechSay)
+speechSay = rospy.ServiceProxy('/qt_respeaker_app/speech_say', speech_say)
 
 # main
 if __name__ == '__main__':
