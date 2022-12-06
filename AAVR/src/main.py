@@ -19,11 +19,11 @@ if __name__ == '__main__':
     rospy.loginfo("audio_record node started")
     
     # Define Speech Service Class
-    speechSay = rospy.ServiceProxy('/qt_respeaker_app/speech_say', speech_say)
+    speechSay = rospy.ServiceProxy('/qt_robot/speech/say', speech_say)
 
     # Log that the service is being called
     rospy.loginfo("Waiting for service /qt_respeaker_app/speech_say")
-    
+
     # Waits for the service to be available
     rospy.wait_for_service('/qt_respeaker_app/speech_say')
 
