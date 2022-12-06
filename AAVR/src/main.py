@@ -3,6 +3,7 @@ import wave
 import rospy
 from audio_common_msgs.msg import AudioData
 from qt_robot_interface.srv import *
+import uuid
 
 AUDIO_RATE = 16000
 AUDIO_CHANNELS = 1
@@ -35,8 +36,9 @@ if __name__ == '__main__':
     except rospy.ServiceException as e:
         print("Service call failed: %s"%e)
          
- 
-    wf = wave.open("recording.wav", 'wb')
+    temp = str(uuid.uuid4())
+
+    wf = wave.open(temp + ".wav", 'wb')
     wf.setnchannels(AUDIO_CHANNELS)
     wf.setsampwidth(AUDIO_WIDTH)
     wf.setframerate(AUDIO_RATE)
