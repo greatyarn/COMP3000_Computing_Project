@@ -22,10 +22,10 @@ if __name__ == '__main__':
     speechSay = rospy.ServiceProxy('/qt_robot/speech/say', speech_say)
 
     # Log that the service is being called
-    rospy.loginfo("Waiting for service /qt_respeaker_app/speech_say")
+    rospy.loginfo("Waiting for service /qt_robot/speech/say")
 
     # Waits for the service to be available
-    rospy.wait_for_service('/qt_respeaker_app/speech_say')
+    rospy.wait_for_service('/qt_robot/speech/say')
 
     try:
         # Calls the service
