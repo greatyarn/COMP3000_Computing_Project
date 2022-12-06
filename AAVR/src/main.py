@@ -2,6 +2,7 @@
 import wave
 import rospy
 from audio_common_msgs.msg import AudioData
+from qt_respeaker_app.srv import SpeechSay
 
 AUDIO_RATE = 16000
 AUDIO_CHANNELS = 1
