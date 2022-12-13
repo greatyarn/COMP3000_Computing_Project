@@ -5,6 +5,7 @@ from audio_common_msgs.msg import AudioData
 from qt_robot_interface.srv import *
 import uuid
 import speech_recognition as sr
+from uploader import *
 
 AUDIO_RATE = 16000
 AUDIO_CHANNELS = 1
@@ -47,9 +48,24 @@ if __name__ == '__main__':
     # Channel 0 is used because it is the processed audio from the microphone
     rospy.Subscriber('/qt_respeaker_app/channel0', AudioData, channel_callback, wf)
 
-    print("recording...")
+    print("Recording...")
 
-    # Waits
-    rospy.spin()
-    print("saving...")
+    # # Waits
+    # rospy.spin()
+    # print("Saving...")
+    # stops the recording after 10 seconds
+    rospy.sleep(10)
+    speechSay("Recording complete")
+
+    # Uploads the file to S3
+    print("Uploading...")
+
+    try:
+        upload_file(temp + ".wav", "greatyarn-comp3000", temp + ".wav")
+        speechSay("Uploading complete")
+        rospy.loginfo("File uploaded")
+    except:
+        speechSay("Upload failed")
+        rospy.loginfo("File upload failed")
+
     wf.close()
