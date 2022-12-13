@@ -1,9 +1,8 @@
 import boto3
 from main import *
 
-s3_client = boto3.client('s3')
-s3_resource = boto3.resource('s3')
-
+s3_client = boto3.client('s3', aws_access_key_id=ACCESS_KEY,
+                         aws_secret_access_key=SECRET_KEY)
 
 def upload_file(file_name, bucket, object_name=None):
     # If S3 object_name was not specified, use file_name

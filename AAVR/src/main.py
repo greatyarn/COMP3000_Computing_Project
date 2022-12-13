@@ -11,8 +11,10 @@ AUDIO_RATE = 16000
 AUDIO_CHANNELS = 1
 AUDIO_WIDTH = 2
 
+
 def channel_callback(msg, wf):
     wf.writeframes(msg.data)
+
 
 # main
 if __name__ == '__main__':
@@ -20,7 +22,7 @@ if __name__ == '__main__':
     # call the relevant service
     rospy.init_node('audio_record')
     rospy.loginfo("audio_record node started")
-    
+
     # Define Speech Service Class
     speechSay = rospy.ServiceProxy('/qt_robot/speech/say', speech_say)
 
@@ -36,8 +38,8 @@ if __name__ == '__main__':
         speechSay("Recording in five seconds")
         rospy.sleep(5)
     except rospy.ServiceException as e:
-        print("Service call failed: %s"%e)
-         
+        print("Service call failed: %s" % e)
+
     temp = str(uuid.uuid4())
 
     wf = wave.open(temp + ".wav", 'wb')
@@ -46,7 +48,8 @@ if __name__ == '__main__':
     wf.setframerate(AUDIO_RATE)
 
     # Channel 0 is used because it is the processed audio from the microphone
-    rospy.Subscriber('/qt_respeaker_app/channel0', AudioData, channel_callback, wf)
+    rospy.Subscriber('/qt_respeaker_app/channel0',
+                     AudioData, channel_callback, wf)
 
     print("Recording...")
 
