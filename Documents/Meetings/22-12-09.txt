@@ -1,0 +1,2 @@
+AWS Rekognition - Do more information on the Library recognition - Write More information 
+Logging turn on and off, for console,
