@@ -53,11 +53,9 @@ if __name__ == '__main__':
 
     print("Recording...")
 
-    # # Waits
-    # rospy.spin()
-    # print("Saving...")
     # stops the recording after 10 seconds
     rospy.sleep(10)
+
     speechSay("Recording complete")
 
     # Uploads the file to S3
