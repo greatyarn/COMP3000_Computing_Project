@@ -10,8 +10,6 @@
 
 ---
 
-
-
 ## Resources
 
 | Github Repository | https://github.com/greatyarn/COMP3000_Computing_Project                                        |
@@ -20,6 +18,7 @@
 | creative commons  | https://creativecommons.org/                                                                   |
 | LuxAI             | https://luxai.com/robot-for-teaching-children-with-autism-at-home/                             |
 | ROS Robots        | https://robots.ros.org/qtrobot/                                                                |
+| GanttProject      | https://www.ganttproject.biz/                                                                  |
 
 ---
 
