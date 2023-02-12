@@ -160,3 +160,5 @@ cython_debug/
 #.idea/
 *.mp4
 *.mkv
+AAVR/src/.aws_credentials/credentials
+AAVR/src/.aws_credentials/config

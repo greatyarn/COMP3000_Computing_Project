@@ -2,11 +2,14 @@ import boto3
 import os
 from main import *
 
+
 # Authenticate to AWS in - line
 # s3_client = boto3.client('s3', region_name=eu-west-2, aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY)
 
 # Authenticate to AWS in - file
-os.environ['AWS_SHARED_CREDENTIALS_FILE'] = "~/"
+os.environ['AWS_SHARED_CREDENTIALS_FILE'] = "~/.aws_credentials"
+
+# Parse credentials from the AWS credentials file
 
 s3_client = boto3.client('s3')
 
