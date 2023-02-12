@@ -7,6 +7,7 @@ import uuid
 import speech_recognition as sr
 from uploader import *
 
+# Setting up the audio file
 AUDIO_RATE = 16000
 AUDIO_CHANNELS = 1
 AUDIO_WIDTH = 2
