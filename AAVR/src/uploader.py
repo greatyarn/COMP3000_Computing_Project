@@ -4,7 +4,7 @@ from main import *
 import json
 
 # Authenticate to AWS in - file
-os.environ['AWS_SHARED_CREDENTIALS_FILE'] = "~/.aws_credentials/credentials.json"
+os.environ['AWS_SHARED_CREDENTIALS_FILE'] = "/.aws_credentials/credentials.json"
 
 # Open the credentials json file
 with open(os.environ['AWS_SHARED_CREDENTIALS_FILE']) as f:
