@@ -10,8 +10,8 @@ os.environ['AWS_SHARED_CREDENTIALS_FILE'] = "~/.aws_credentials/credentials.json
 with open(os.environ['AWS_SHARED_CREDENTIALS_FILE']) as f:
     data = json.load(f)
 
-accesskey = config['AWS']['aws_access_key_id']
-secretkey = config['AWS']['aws_secret_access_key']
+accesskey = data['AWS']['aws_access_key_id']
+secretkey = data['AWS']['aws_secret_access_key']
 
 s3_client = boto3.client('s3', region_name='eu-west-2',
                          aws_access_key_id=accesskey, aws_secret_access_key=secretkey)
