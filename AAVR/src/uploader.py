@@ -1,17 +1,20 @@
 import boto3
 import os
 from main import *
-
-
-# Authenticate to AWS in - line
-# s3_client = boto3.client('s3', region_name=eu-west-2, aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY)
+import json
 
 # Authenticate to AWS in - file
-os.environ['AWS_SHARED_CREDENTIALS_FILE'] = "~/.aws_credentials"
+os.environ['AWS_SHARED_CREDENTIALS_FILE'] = "~/.aws_credentials/credentials.json    "
 
-# Parse credentials from the AWS credentials file
+# Open the credentials json file
+with open(os.environ['AWS_SHARED_CREDENTIALS_FILE']) as f:
+    data = json.load(f)
 
-s3_client = boto3.client('s3')
+accesskey = config['AWS']['aws_access_key_id']
+secretkey = config['AWS']['aws_secret_access_key']
+
+s3_client = boto3.client('s3', region_name='eu-west-2',
+                         aws_access_key_id=accesskey, aws_secret_access_key=secretkey)
 
 # Defining the upload service
 

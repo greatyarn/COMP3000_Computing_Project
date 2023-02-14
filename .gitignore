@@ -162,3 +162,4 @@ cython_debug/
 *.mkv
 AAVR/src/.aws_credentials/credentials
 AAVR/src/.aws_credentials/config
+AAVR/src/.aws_credentials/credentials.json
