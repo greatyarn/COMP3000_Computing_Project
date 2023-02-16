@@ -1,0 +1,13 @@
+- Contact a few close people <10 (The ethical approval form only allows up to 19 people in real life, 39 via remote)
+	- Remote Contact will only be used to use via videos and explanation if needed
+	- Consent forms will be given out and signatures are mandatory
+
+- Will start with an expectation list
+	- Will show an example on how it will work
+	- Will allow testers to run through the software themselves
+	- The main developer of the section of the software must be there at all times and will not leave the premises with the testers alone
+	
+- There will be a survey with relevant questions that needs to be asked
+	- This survey will indirectly show what improvements that can be made to the current software at hand
+
+- Testing will be done before the start of the poster & Description development
