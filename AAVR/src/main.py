@@ -23,6 +23,10 @@ if __name__ == '__main__':
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
 
+    #wait for the user to speak
+    rospy.sleep(5)
+
+    
     # Call the email_upload function
     eu.email_upload()
     
