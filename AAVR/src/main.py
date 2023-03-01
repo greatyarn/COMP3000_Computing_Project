@@ -1,4 +1,4 @@
-import email_upload as eu
+import email_send as eu
 import rospy
 from qt_robot_interface.srv import *
 
