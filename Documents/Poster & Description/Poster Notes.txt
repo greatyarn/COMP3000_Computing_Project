@@ -1,0 +1,12 @@
+- Project Title
+- Project Vision
+- Keywords
+- Poster Image
+	- A3 Image
+	- 10687413.png
+- Thumbnail Image
+	- Resize them
+	
+- Write bout the main functionalities
+- What is it possible to do now?
+- Company logo and titles, It shows who has collaborated in the software.
