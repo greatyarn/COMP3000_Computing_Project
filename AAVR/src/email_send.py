@@ -16,3 +16,6 @@ def email_upload():
     # Email Body
     body = "Your OTP is " + otp + "Please say this OTP to verify your account to the robot once requested. Thank you very much!"
 
+#TODO Write code for connection to mail server
+
+
