@@ -10,7 +10,8 @@ def userSave():
 
     #wait for the user to speak
     rospy.sleep(5)
-
+    
+    global user_name
     user_name = recognise("en-US")
     rospy.loginfo(user_name)
 
