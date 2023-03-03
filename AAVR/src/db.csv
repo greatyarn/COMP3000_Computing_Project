@@ -1,0 +1,5 @@
+1,name,"ask","State your name"
+2,phone,"ask","Say your phone number"
+3,email,"ask","Say your email"
+4,name,"confirm","is this the right name"
+5,phone,"confirm","is this the right phone number"

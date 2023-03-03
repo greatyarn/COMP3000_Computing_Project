@@ -1,6 +1,7 @@
 import email_send as eu
 import rospy
 from qt_robot_interface.srv import *
+import db as db
 
 def otpCreate():
     import random
@@ -17,10 +18,12 @@ def otpCreate():
 
     return otp
 
-
+//usersave(info_type)
+///usersave("name")
+//usersave("phone")
 def userSave():
     try:
-        speechSay("State your Name")
+        speechSay("State your Name") //speeachSay(query(db, info=name & action = ask))
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
 
