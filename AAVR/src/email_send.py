@@ -18,4 +18,9 @@ def email_upload():
 
 #TODO Write code for connection to mail server
 
+    server = smtplib.SMTP('localhost')
+    server.sendmail(email_address, email_address_receiver, subject + body)
+    server.quit()
+
+
 

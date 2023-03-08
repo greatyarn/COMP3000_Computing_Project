@@ -18,9 +18,9 @@ def otpCreate():
 
     return otp
 
-//usersave(info_type)
-///usersave("name")
-//usersave("phone")
+# usersave(info_type)
+# usersave("name")
+# usersave("phone")
 def userSave():
     try:
         speechSay("State your Name") //speeachSay(query(db, info=name & action = ask))

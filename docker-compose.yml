@@ -24,5 +24,38 @@ services:
       - comp3000:/var/lib/postgresql/data
       - comp3000:/var/lib/pgadmin
 
+  mailslurper:
+    image: derekahn/mailslurper
+    ports:
+      - 2500:2500
+      - 8080:8080
+      - 8085:8085
+
 volumes:
   comp3000:
+
+  # mailcow:
+  #   user: root
+  #   image: mailcow/dovecot
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #     - "25:25"
+  #     - "110:110"
+  #     - "143:143"
+  #     - "465:465"
+  #     - "587:587"
+  #     - "993:993"
+  #     - "995:995"
+
+  # mailhog:
+  #   user: root
+  #   image: mailhog/mailhog
+  #   ports:
+  #     - "8025:8025"
+  #     - "1025:1025"
+  #   environment:
+  #     MH_STORAGE: "maildir"
+  #     MH_MAILDIR_PATH: "/var/lib/mailhog"
+  #   volumes:
+  #     - comp3000:/var/lib/mailhog
