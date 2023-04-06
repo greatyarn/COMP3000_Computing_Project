@@ -1,26 +1,37 @@
-from main import *
+# from main import *
 import smtplib
+import os
+from dotenv import load_dotenv, find_dotenv
 
+load_dotenv(find_dotenv())
 
-def email_upload():
-    # Email Address for sender is written here
-    email_address = ""
-    password = ""
+# Email Address for sender is written here
+email_address = os.getenv("EMAILSEND")
+password = os.getenv("EMAILPASS")
 
-    # Email Address for receiver is written here
-    email_address_receiver = ""
+# Email Address for receiver is written here
+email_address_receiver = os.getenv("EMAILSEND")
 
-    # Email Subject
-    subject = "Hello! Here is the OTP that you requested " + user_name
+# Email Subject
+subject = "Hello! Here is the OTP that you requested "  # + user_name
 
-    # Email Body
-    body = "Your OTP is " + otp + "Please say this OTP to verify your account to the robot once requested. Thank you very much!"
+# Email Body
+body = "Your OTP is " + "otp" + \
+    "Please say this OTP to verify your account to the robot once requested. Thank you very much!"
 
-#TODO Write code for connection to mail server
-
-    server = smtplib.SMTP('localhost')
+# TODO Write code for connection to mail server
+try:
+    # SMTP
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    print("Connection to mail server established")
+    # server.ehlo()
+    print("a")
+    server.starttls()
+    print("b")
+    server.login(email_address, password)
+    print("c")
     server.sendmail(email_address, email_address_receiver, subject + body)
+    print("D")
     server.quit()
-
-
-
+except Exception as E:
+    print(str(E))

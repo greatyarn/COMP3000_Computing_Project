@@ -21,9 +21,9 @@ def otpCreate():
 # usersave(info_type)
 # usersave("name")
 # usersave("phone")
-def userSave():
+def userSave(info_type, ):
     try:
-        speechSay("State your Name") //speeachSay(query(db, info=name & action = ask))
+        speechSay("State your Name") #speechSay(query(db, info=name & action = ask))
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
 
@@ -65,8 +65,6 @@ if __name__ == '__main__':
     rospy.wait_for_service('/qt_robot/speech/recognize')
 
     userSave()
-
-
 
     #TODO Call the email_upload function
     eu.email_upload()
