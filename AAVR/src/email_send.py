@@ -1,10 +1,11 @@
-# from main import *
+from main import *
 import smtplib
 import os
 from dotenv import load_dotenv, find_dotenv
 
-load_dotenv(find_dotenv())
 
+load_dotenv(find_dotenv())
+    
 # Email Address for sender is written here
 email_address = os.getenv("EMAILSEND")
 password = os.getenv("EMAILPASS")
@@ -13,13 +14,12 @@ password = os.getenv("EMAILPASS")
 email_address_receiver = os.getenv("EMAILSEND")
 
 # Email Subject
-subject = "Hello! Here is the OTP that you requested "  # + user_name
+subject = "Hello! Here is the OTP that you requested " + user_name
 
 # Email Body
-body = "Your OTP is " + "otp" + \
+body = "Your OTP is " + otp + \
     "Please say this OTP to verify your account to the robot once requested. Thank you very much!"
 
-# TODO Write code for connection to mail server
 try:
     # SMTP
     server = smtplib.SMTP('smtp.gmail.com', 587)

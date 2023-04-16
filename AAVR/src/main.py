@@ -3,6 +3,7 @@ import rospy
 from qt_robot_interface.srv import *
 import db as db
 
+
 def otpCreate():
     import random
     global otp
@@ -21,15 +22,18 @@ def otpCreate():
 # usersave(info_type)
 # usersave("name")
 # usersave("phone")
+
+
 def userSave(info_type, ):
     try:
-        speechSay("State your Name") #speechSay(query(db, info=name & action = ask))
+        # speechSay(query(db, info=name & action = ask))
+        speechSay("State your Name")
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
 
-    #wait for the user to speak
+    # wait for the user to speak
     rospy.sleep(5)
-    
+
     global user_name
     user_name = recognise("en-US")
     rospy.loginfo(user_name)
@@ -48,13 +52,14 @@ def userSave(info_type, ):
             userSave()
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
-        
+
+
 if __name__ == '__main__':
 
     # Define ROS Services
     speechSay = rospy.ServiceProxy('/qt_robot/speech/say', speech_say)
-    recognise = rospy.ServiceProxy('/qt_robot/speech/recognize', speech_recognize)
-
+    recognise = rospy.ServiceProxy(
+        '/qt_robot/speech/recognize', speech_recognize)
 
     # Log that the service is being called
     rospy.loginfo("Waiting for service /qt_robot/speech/say")
@@ -64,9 +69,9 @@ if __name__ == '__main__':
     rospy.wait_for_service('/qt_robot/speech/say')
     rospy.wait_for_service('/qt_robot/speech/recognize')
 
-    userSave()
+    # userSave()
 
-    #TODO Call the email_upload function
+    # TODO Call the email_upload function
+    user_name = "Greg"
+    otpCreate()
     eu.email_upload()
-    
-
