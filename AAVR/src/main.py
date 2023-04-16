@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import email_send
 import rospy
 from qt_robot_interface.srv import *
 import db as db
@@ -74,5 +73,4 @@ if __name__ == '__main__':
 
     # TODO Call the email_upload function
     otpCreate()
-    send = email_send()
-    send.email_send()
+    email_send()

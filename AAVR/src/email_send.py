@@ -5,6 +5,7 @@ from dotenv import load_dotenv, find_dotenv
 
 
 load_dotenv(find_dotenv())
+
     
 # Email Address for sender is written here
 email_address = os.getenv("EMAILSEND")
