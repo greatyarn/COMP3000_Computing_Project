@@ -95,10 +95,10 @@ def email_send():
 
 
 if __name__ == '__main__':
-    print("Starting AAVR")
+
     # Initialize the node
+    print("Starting AAVR")
     rospy.init_node('AAVR')
-    rospy.loginfo("Starting AAVR")
 
     # Define ROS Services
     print("Defining ROS Services")
@@ -109,6 +109,7 @@ if __name__ == '__main__':
     # Log that the service is being called
     print("Waiting for service /qt_robot/speech/say")
     rospy.loginfo("Waiting for service /qt_robot/speech/say")
+
     print("Waiting for service /qt_robot/speech/recognize")
     rospy.loginfo("Waiting for service /qt_robot/speech/recognize")
 
@@ -116,3 +117,8 @@ if __name__ == '__main__':
     print("Waiting for service to be available")
     rospy.wait_for_service('/qt_robot/speech/say')
     rospy.wait_for_service('/qt_robot/speech/recognize')
+
+    try:
+        rospy.spin()
+    except KeyboardInterrupt:
+        pass
