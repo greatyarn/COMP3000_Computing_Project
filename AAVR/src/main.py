@@ -8,6 +8,7 @@ from dotenv import load_dotenv, find_dotenv
 
 
 def otpCreate():
+    print("Creating OTP")
     import random
     global otp
     otp = ""
@@ -28,6 +29,7 @@ def otpCreate():
 
 
 def userSave():
+    print("Saving User")
     try:
         # speechSay(query(db, info=name & action = ask))
         speechSay("State your Name")
@@ -58,6 +60,7 @@ def userSave():
 
 
 def email_send():
+    print("Sending Email")
     load_dotenv(find_dotenv())
 
     # Email Address for sender is written here
@@ -92,7 +95,7 @@ def email_send():
 
 
 if __name__ == '__main__':
-
+    print("Starting AAVR")
     # Initialize the node
     rospy.init_node('AAVR')
     rospy.loginfo("Starting AAVR")
@@ -109,9 +112,3 @@ if __name__ == '__main__':
     # Waits for the service to be available
     rospy.wait_for_service('/qt_robot/speech/say')
     rospy.wait_for_service('/qt_robot/speech/recognize')
-
-    userSave()
-
-    # TODO Call the email_upload function
-    otpCreate()
-    email_send()
