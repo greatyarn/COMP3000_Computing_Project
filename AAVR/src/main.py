@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import rospy
-from qt_robot_interface.srv import *
+from qt_robot_interface.srv import speech_say, speech_recognize
 import db as db
 import smtplib
 import os
