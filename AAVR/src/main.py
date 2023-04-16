@@ -74,4 +74,5 @@ if __name__ == '__main__':
 
     # TODO Call the email_upload function
     otpCreate()
-    email_send()
+    send = email_send()
+    send.email_send()
