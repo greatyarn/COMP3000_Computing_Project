@@ -95,7 +95,7 @@ if __name__ == '__main__':
 
     # Initialize the node
     rospy.init_node('AAVR')
-    rospy.rospy.loginfo("Starting AAVR")
+    rospy.loginfo("Starting AAVR")
 
     # Define ROS Services
     speechSay = rospy.ServiceProxy('/qt_robot/speech/say', speech_say)
