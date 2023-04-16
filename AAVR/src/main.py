@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import email_send as eu
+import email_send
 import rospy
 from qt_robot_interface.srv import *
 import db as db
@@ -25,7 +25,7 @@ def otpCreate():
 # usersave("phone")
 
 
-def userSave(info_type, ):
+def userSave():
     try:
         # speechSay(query(db, info=name & action = ask))
         speechSay("State your Name")
@@ -70,9 +70,8 @@ if __name__ == '__main__':
     rospy.wait_for_service('/qt_robot/speech/say')
     rospy.wait_for_service('/qt_robot/speech/recognize')
 
-    # userSave()
+    userSave()
 
     # TODO Call the email_upload function
-    #user_name = "Greg"
     otpCreate()
-    eu.email_upload()
+    email_send()
