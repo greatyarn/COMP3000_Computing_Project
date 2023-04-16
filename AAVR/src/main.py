@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import rospy
 from qt_robot_interface.srv import speech_say
-from qt_vosk_interface.srv import speech_recognize
+from qt_vosk_app.srv import speech_recognize
 import db as db
 import smtplib
 import os
