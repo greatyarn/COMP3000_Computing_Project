@@ -101,14 +101,18 @@ if __name__ == '__main__':
     rospy.loginfo("Starting AAVR")
 
     # Define ROS Services
+    print("Defining ROS Services")
     speechSay = rospy.ServiceProxy('/qt_robot/speech/say', speech_say)
     recognise = rospy.ServiceProxy(
         '/qt_robot/speech/recognize', speech_recognize)
 
     # Log that the service is being called
+    print("Waiting for service /qt_robot/speech/say")
     rospy.loginfo("Waiting for service /qt_robot/speech/say")
+    print("Waiting for service /qt_robot/speech/recognize")
     rospy.loginfo("Waiting for service /qt_robot/speech/recognize")
 
     # Waits for the service to be available
+    print("Waiting for service to be available")
     rospy.wait_for_service('/qt_robot/speech/say')
     rospy.wait_for_service('/qt_robot/speech/recognize')
