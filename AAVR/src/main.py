@@ -113,6 +113,10 @@ if __name__ == '__main__':
     rospy.wait_for_service('/qt_robot/speech/say')
     rospy.wait_for_service('/qt_robot/speech/recognize')
 
+    userSave()
+    otpCreate()
+    email_send(user_name, otp)
+
     try:
         rospy.spin()
     except KeyboardInterrupt:
