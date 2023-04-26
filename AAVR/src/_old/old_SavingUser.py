@@ -1,12 +1,9 @@
 import rospy
 import wave
 import uuid
-import speech_recognition as sr
 from qt_robot_interface.srv import speech_say
 from qt_vosk_app.srv import speech_recognize
 from audio_common_msgs.msg import AudioData
-from os import path
-from pydub import AudioSegment
 
 # Define ROS Services
 print("Defining ROS Services")
@@ -51,7 +48,7 @@ def userSave():
     print("Recording...")
     rospy.sleep(3)
 
-    speechSay("Recording complete")
+    # speechSay("Recording complete")
 
     # print("Is this the right name?")
     # speechSay("Hello %s, Is this the right name?" % user_name.transcript)
@@ -70,11 +67,3 @@ def userSave():
     #         userSave()
     # except rospy.ServiceException as e:
     #     print("Service call failed: %s" % e)
-
-    AUDIO_FILE = temp + ".wav"
-    r = sr.Recognizer()
-
-    with sr.AudioFile(AUDIO_FILE) as source:
-        audio = r.record(source)  # read the entire audio file
-
-        print("Transcription: " + r.recognize_google(audio))
