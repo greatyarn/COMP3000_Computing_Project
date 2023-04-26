@@ -32,7 +32,7 @@ def userSave():
     # wait for the user to speak
     rospy.sleep(5)
 
-    user_name = recognise("en-US")
+    user_name = recognise("en-US", 5)
     rospy.loginfo(user_name)
 
     speechSay("Hello " + user_name + " Is this the right name?")
