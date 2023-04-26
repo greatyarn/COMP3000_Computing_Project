@@ -1,9 +1,9 @@
 import rospy
+import wave
+import uuid
 from qt_robot_interface.srv import speech_say
 from qt_vosk_app.srv import speech_recognize
-import wave
 from audio_common_msgs.msg import AudioData
-import uuid
 
 # Define ROS Services
 print("Defining ROS Services")
@@ -16,13 +16,6 @@ rospy.loginfo("audio_record node started")
 AUDIO_RATE = 16000
 AUDIO_CHANNELS = 1
 AUDIO_WIDTH = 2
-
-# Log that the service is being called
-print("Waiting for service /qt_robot/speech/say")
-rospy.loginfo("Waiting for service /qt_robot/speech/say")
-
-print("Waiting for service /qt_robot/speech/recognize")
-rospy.loginfo("Waiting for service /qt_robot/speech/recognize")
 
 # Waits for the service to be available
 print("Waiting for service to be available")
@@ -39,7 +32,7 @@ def channel_callback(msg, wf):
 def userSave():
     print("Saving User")
     try:
-        # speechSay(query(db, info=name & action = ask))
+
         speechSay("State your Name")
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
