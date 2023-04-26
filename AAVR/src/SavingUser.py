@@ -34,7 +34,7 @@ def userSave():
     # wait for the user to speak
     rospy.sleep(5)
 
-    user_name = recognise("en-US", ['Adam', 'Greg'], 5)
+    user_name = recognise("en-US", ['Adam', 'Gregory'], 5)
     rospy.loginfo(user_name)
 
     print("Is this the right name?")
