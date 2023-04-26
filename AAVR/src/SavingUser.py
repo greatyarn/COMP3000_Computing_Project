@@ -42,6 +42,7 @@ def userSave():
     rospy.sleep(5)
 
     try:
+        confirmation = ''
         confirmation.transcript = recognise("en-US", ['yes', 'no'], 5)
         if confirmation.transcript == "yes":
             rospy.loginfo("Yes")
