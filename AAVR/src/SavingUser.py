@@ -51,9 +51,8 @@ def userSave():
 
     print("Recording...")
     rospy.sleep(3)
-    wf.close()
 
-    speechSay("Recording complete")
+    # speechSay("Recording complete")
 
     # print("Is this the right name?")
     # speechSay("Hello %s, Is this the right name?" % user_name.transcript)
