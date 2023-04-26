@@ -29,14 +29,6 @@ def channel_callback(msg, wf):
 
 def userSave():
     print("Saving User")
-    try:
-
-        speechSay("State your Name")
-    except rospy.ServiceException as e:
-        print("Service call failed: %s" % e)
-
-    # wait for the user to speak
-    rospy.sleep(5)
 
     # user_name = recognise("en-US", ['Adam', 'Gregory'], 5)
     # rospy.loginfo(user_name)
@@ -52,10 +44,14 @@ def userSave():
     rospy.Subscriber('/qt_respeaker_app/channel0',
                      AudioData, channel_callback, wf)
 
-    print("Recording...")
+    try:
+        speechSay("State your Name")
+    except rospy.ServiceException as e:
+        print("Service call failed: %s" % e)
 
-    # stops the recording after 10 seconds
+    print("Recording...")
     rospy.sleep(3)
+    wf.close()
 
     speechSay("Recording complete")
 
