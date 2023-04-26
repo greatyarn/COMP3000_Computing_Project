@@ -28,26 +28,22 @@ def channel_callback(msg, wf):
 
 
 def userSave():
-    print("Saving User")
-
+    print("Saving UserName")
     # user_name = recognise("en-US", ['Adam', 'Gregory'], 5)
     # rospy.loginfo(user_name)
-
     temp = str(uuid.uuid4())
-
-    wf = wave.open(temp + ".wav", 'wb')
-    wf.setnchannels(AUDIO_CHANNELS)
-    wf.setsampwidth(AUDIO_WIDTH)
-    wf.setframerate(AUDIO_RATE)
-
-    # Channel 0 is used because it is the processed audio from the microphone
-    rospy.Subscriber('/qt_respeaker_app/channel0',
-                     AudioData, channel_callback, wf)
 
     try:
         speechSay("State your Name")
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
+    wf = wave.open(temp + ".wav", 'wb')
+    wf.setnchannels(AUDIO_CHANNELS)
+    wf.setsampwidth(AUDIO_WIDTH)
+    wf.setframerate(AUDIO_RATE)
+    # Channel 0 is used because it is the processed audio from the microphone
+    rospy.Subscriber('/qt_respeaker_app/channel0',
+                     AudioData, channel_callback, wf)
 
     print("Recording...")
     rospy.sleep(3)
