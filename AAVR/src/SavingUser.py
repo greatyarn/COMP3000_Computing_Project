@@ -17,11 +17,6 @@ AUDIO_RATE = 16000
 AUDIO_CHANNELS = 1
 AUDIO_WIDTH = 2
 
-# Waits for the service to be available
-print("Waiting for service to be available")
-rospy.wait_for_service('/qt_robot/speech/say')
-rospy.wait_for_service('/qt_robot/speech/recognize')
-
 # list_of_name = ['Adam', 'Greg']
 
 
