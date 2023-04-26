@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 import rospy
 import db as db
-import smtplib
-import os
-from dotenv import load_dotenv, find_dotenv
 from otpCreate import otpCreate
 from SavingUser import userSave
 from email_send import emailSend

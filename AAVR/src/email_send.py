@@ -1,4 +1,3 @@
-from main import *
 import smtplib
 import os
 from otpCreate import otpCreate
@@ -20,7 +19,7 @@ def emailSend(user_name, otpCreate):
     subject = "Hello! Here is the OTP that you requested " + user_name
 
     # Email Body
-    body = "Your OTP is " + otpCreate + \
+    body = "Your OTP is " + otpCreate.otp + \
         "Please say this OTP to verify your account to the robot once requested. Thank you very much!"
 
     try:
