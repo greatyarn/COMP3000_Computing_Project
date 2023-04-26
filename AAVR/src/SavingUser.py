@@ -20,7 +20,7 @@ print("Waiting for service to be available")
 rospy.wait_for_service('/qt_robot/speech/say')
 rospy.wait_for_service('/qt_robot/speech/recognize')
 
-list_of_name = ['Adam', 'Greg']
+# list_of_name = ['Adam', 'Greg']
 
 
 def userSave():
@@ -34,7 +34,7 @@ def userSave():
     # wait for the user to speak
     rospy.sleep(5)
 
-    user_name = recognise("en-US", list_of_name, 5)
+    user_name = recognise("en-US", ['Adam', 'Greg'], 5)
     rospy.loginfo(user_name)
     print(user_name)
 
