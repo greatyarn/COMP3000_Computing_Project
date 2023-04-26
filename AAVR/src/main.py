@@ -6,6 +6,7 @@ import os
 from dotenv import load_dotenv, find_dotenv
 from otpCreate import otpCreate
 from SavingUser import userSave
+from email_send import emailSend
 
 if __name__ == '__main__':
 
@@ -13,10 +14,9 @@ if __name__ == '__main__':
     print("Starting AAVR")
     rospy.init_node('AAVR')
 
-   
     userSave()
     otpCreate()
-    email_send(user_name, otp)
+    emailSend()
 
     try:
         rospy.spin()

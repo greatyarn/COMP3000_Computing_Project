@@ -42,8 +42,8 @@ def userSave():
     rospy.sleep(5)
 
     try:
-        confirmation = recognise("en-US", ['yes', 'no'], 5)
-        if confirmation == "yes":
+        confirmation.transcript = recognise("en-US", ['yes', 'no'], 5)
+        if confirmation.transcript == "yes":
             rospy.loginfo("Yes")
             speechSay("Ok, I will remember that")
             return user_name
