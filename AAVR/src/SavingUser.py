@@ -10,12 +10,15 @@ print("Defining ROS Services")
 speechSay = rospy.ServiceProxy('/qt_robot/speech/say', speech_say)
 recognise = rospy.ServiceProxy(
     '/qt_robot/speech/recognize', speech_recognize)
-rospy.init_node('audio_record')
-rospy.loginfo("audio_record node started")
 
 AUDIO_RATE = 16000
 AUDIO_CHANNELS = 1
 AUDIO_WIDTH = 2
+
+# Waits for the service to be available
+print("Waiting for service to be available")
+rospy.wait_for_service('/qt_robot/speech/say')
+rospy.wait_for_service('/qt_robot/speech/recognize')
 
 # list_of_name = ['Adam', 'Greg']
 
