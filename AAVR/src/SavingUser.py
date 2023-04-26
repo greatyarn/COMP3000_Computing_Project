@@ -37,7 +37,7 @@ def userSave():
     user_name = recognise("en-US", list_of_name, 5)
     rospy.loginfo(user_name)
 
-    speechSay("Hello " + user_name + " Is this the right name?")
+    speechSay("Hello " + str.user_name + " Is this the right name?")
     rospy.sleep(5)
 
     try:
