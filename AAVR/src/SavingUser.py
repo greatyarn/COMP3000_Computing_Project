@@ -32,8 +32,6 @@ def channel_callback(msg, wf):
 
 def userSave():
     print("Saving UserName")
-    # user_name = recognise("en-US", ['Adam', 'Gregory'], 5)
-    # rospy.loginfo(user_name)
     temp = str(uuid.uuid4())
 
     try:
@@ -73,9 +71,9 @@ def userSave():
     rospy.sleep(5)
 
     try:
-        confirmation = ''
-        confirmation.transcript = recognise("en-US", ['yes', 'no'], 5)
-        if confirmation.transcript == "yes":
+        response = ''
+        response = recognise("en_US", ['yes', 'no'], 10)
+        if response.transcript == "yes":
             rospy.loginfo("Yes")
             speechSay("Ok, I will remember that")
             return user_name
