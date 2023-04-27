@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     userSave()
     otpCreate()
-    emailSend(userSave.user_name, otpCreate.otp)
+    emailSend()
 
     try:
         rospy.spin()
