@@ -62,9 +62,6 @@ def userSave():
         confirmation_final = ''.join(confirmation_final)  # remove spaces
         print(confirmation_final)
 
-        # Stop recording
-        wf.close()
-
     try:
         speechSay("Hello %s, Is this the right name?" % confirmation_final)
     except rospy.ServiceException as e:
@@ -91,16 +88,21 @@ def userSave():
         print("Transcription: " + r.recognize_google(audio))
         confirmation = r.recognize_google(audio)
         confirmation_final = confirmation.strip()
-        confirmation_final = ''.join(confirmation_final)  # remove spaces
-        print(confirmation_final)
 
-    if confirmation_final == "yes":
+    if "yes" in confirmation_final:
         print("Saving Name")
         try:
             speechSay("Saving Name")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
         return confirmation_final
+    elif "no" in confirmation_final:
+        print("Name not saved")
+        try:
+            speechSay("Name not saved")
+        except rospy.ServiceException as e:
+            print("Service call failed: %s" % e)
+        return userSave()
     else:
         print("Name not saved")
         try:
