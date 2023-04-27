@@ -47,7 +47,7 @@ def userSave():
 
     print("Recording...")
     rospy.sleep(3)
-    r.stop()
+
     user_name = ''
 
     AUDIO_FILE = temp + ".wav"
@@ -60,6 +60,7 @@ def userSave():
         user_name_final = user_name.strip()
         user_name_final = ''.join(user_name_final)  # remove spaces
         print(user_name_final)
+        r.stop()
 
     try:
         speechSay("Hello %s, Is this the right name?" % user_name_final)
