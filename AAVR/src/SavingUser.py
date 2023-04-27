@@ -47,6 +47,7 @@ def userSave():
 
     print("Recording...")
     rospy.sleep(3)
+    r.stop()
     user_name = ''
 
     AUDIO_FILE = temp + ".wav"
@@ -65,28 +66,27 @@ def userSave():
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
 
-    rospy.sleep(3)
-    AUDIO_FILE = temp + ".wav"
-    r = sr.Recognizer()
-    with sr.AudioFile(AUDIO_FILE) as source:
-        audio = r.record(source)
-        print("Transcription: " + r.recognize_google(audio))
-        confirmation = r.recognize_google(audio)
-        confirmation_final = user_name.strip()
-        confirmation_final = ''.join(confirmation_final)  # remove spaces
-        print(confirmation_final)
+    # AUDIO_FILE = temp + ".wav"
+    # r = sr.Recognizer()
+    # with sr.AudioFile(AUDIO_FILE) as source:
+    #     audio = r.record(source)
+    #     print("Transcription: " + r.recognize_google(audio))
+    #     confirmation = r.recognize_google(audio)
+    #     confirmation_final = user_name.strip()
+    #     confirmation_final = ''.join(confirmation_final)  # remove spaces
+    #     print(confirmation_final)
 
-    if confirmation_final == "yes":
-        print("Saving Name")
-        try:
-            speechSay("Saving Name")
-        except rospy.ServiceException as e:
-            print("Service call failed: %s" % e)
-        return confirmation_final
-    else:
-        print("Name not saved")
-        try:
-            speechSay("Name not saved")
-        except rospy.ServiceException as e:
-            print("Service call failed: %s" % e)
-        return userSave()
+    # if confirmation_final == "yes":
+    #     print("Saving Name")
+    #     try:
+    #         speechSay("Saving Name")
+    #     except rospy.ServiceException as e:
+    #         print("Service call failed: %s" % e)
+    #     return confirmation_final
+    # else:
+    #     print("Name not saved")
+    #     try:
+    #         speechSay("Name not saved")
+    #     except rospy.ServiceException as e:
+    #         print("Service call failed: %s" % e)
+    #     return userSave()
