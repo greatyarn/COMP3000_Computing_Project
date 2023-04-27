@@ -13,7 +13,6 @@ if __name__ == '__main__':
 
     userSave()
     otpCreate()
-    print(otpCreate())
     emailSend()
 
     try:
