@@ -66,6 +66,7 @@ def userSave():
 
     try:
         speechSay("Hello %s, Is this the right name?" % confirmation_final)
+        print("Confirming Name")
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
 
@@ -77,7 +78,7 @@ def userSave():
     rospy.Subscriber('/qt_respeaker_app/channel0',
                      AudioData, channel_callback, wf)
 
-    print("Recording...")
+    print("Recording confirmation...")
     rospy.sleep(3)
 
     confirmation = ''
