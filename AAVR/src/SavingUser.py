@@ -62,6 +62,9 @@ def userSave():
         confirmation_final = ''.join(confirmation_final)  # remove spaces
         print(confirmation_final)
 
+        # Stop recording
+        wf.close()
+
     try:
         speechSay("Hello %s, Is this the right name?" % confirmation_final)
     except rospy.ServiceException as e:
