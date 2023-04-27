@@ -1,5 +1,7 @@
 import random
 
+global otp
+
 
 def otpCreate():
     print("Creating OTP")

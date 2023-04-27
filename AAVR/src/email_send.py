@@ -1,13 +1,11 @@
 import smtplib
 import os
-from otpCreate import otpCreate
 from dotenv import load_dotenv, find_dotenv
-from SavingUser import userSave
 
 load_dotenv(find_dotenv())
 
 
-def emailSend(userSave, otpCreate):
+def emailSend(user_name, otp):
 
     # Email Address for sender is written here
     email_address = os.getenv("EMAILSEND")
@@ -17,10 +15,10 @@ def emailSend(userSave, otpCreate):
     email_address_receiver = os.getenv("EMAILSEND")
 
     # Email Subject
-    subject = "Hello! Here is the OTP that you requested " + userSave.user_name
+    subject = "Hello! Here is the OTP that you requested " + user_name
 
     # Email Body
-    body = "Your OTP is " + otpCreate.otp + \
+    body = "Your OTP is " + otp + \
         "Please say this OTP to verify your account to the robot once requested. Thank you very much!"
 
     try:

@@ -8,6 +8,8 @@ from audio_common_msgs.msg import AudioData
 from os import path
 from pydub import AudioSegment
 
+global user_name
+
 # Define ROS Services
 print("Defining ROS Services")
 speechSay = rospy.ServiceProxy('/qt_robot/speech/say', speech_say)
