@@ -55,6 +55,24 @@ def userSave():
 
     user_name = ''
 
+    AUDIO_FILE = temp + ".wav"
+    r = sr.Recognizer()
+
+    with sr.AudioFile(AUDIO_FILE) as source:
+        audio = r.record(source)  # read the entire audio file
+
+        print("Transcription: " + r.recognize_google(audio))
+        user_name = r.recognize_google(audio)
+        user_name_final = user_name.strip()
+        print(user_name_final)
+
+    try:
+        speechSay("Hello %s, Is this the right name?" % user_name_final)
+    except rospy.ServiceException as e:
+        print("Service call failed: %s" % e)
+
+    rospy.sleep(5)
+
     # try:
     #     confirmation = ''
     #     confirmation.transcript = recognise("en-US", ['yes', 'no'], 5)
@@ -68,21 +86,3 @@ def userSave():
     #         userSave()
     # except rospy.ServiceException as e:
     #     print("Service call failed: %s" % e)
-
-    AUDIO_FILE = temp + ".wav"
-    r = sr.Recognizer()
-
-    with sr.AudioFile(AUDIO_FILE) as source:
-        audio = r.record(source)  # read the entire audio file
-
-        print("Transcription: " + r.recognize_google(audio))
-
-    print("Is this the right name?")
-    user_name = r.recognize_google(audio)
-
-    try:
-        speechSay("Hello %s, Is this the right name?" % user_name.transcript)
-    except rospy.ServiceException as e:
-        print("Service call failed: %s" % e)
-
-    rospy.sleep(5)
