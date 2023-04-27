@@ -23,8 +23,6 @@ print("Waiting for service to be available")
 rospy.wait_for_service('/qt_robot/speech/say')
 rospy.wait_for_service('/qt_robot/speech/recognize')
 
-# list_of_name = ['Adam', 'Greg']
-
 
 def channel_callback(msg, wf):
     wf.writeframes(msg.data)
@@ -38,6 +36,7 @@ def userSave():
         speechSay("State your Name")
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
+
     wf = wave.open(temp + ".wav", 'wb')
     wf.setnchannels(AUDIO_CHANNELS)
     wf.setsampwidth(AUDIO_WIDTH)
@@ -48,12 +47,10 @@ def userSave():
 
     print("Recording...")
     rospy.sleep(3)
-
     user_name = ''
 
     AUDIO_FILE = temp + ".wav"
     r = sr.Recognizer()
-
     with sr.AudioFile(AUDIO_FILE) as source:
         audio = r.record(source)  # read the entire audio file
 
@@ -68,18 +65,28 @@ def userSave():
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
 
-    rospy.sleep(5)
+    rospy.sleep(3)
+    AUDIO_FILE = temp + ".wav"
+    r = sr.Recognizer()
+    with sr.AudioFile(AUDIO_FILE) as source:
+        audio = r.record(source)
+        print("Transcription: " + r.recognize_google(audio))
+        confirmation = r.recognize_google(audio)
+        confirmation_final = user_name.strip()
+        confirmation_final = ''.join(confirmation_final)  # remove spaces
+        print(confirmation_final)
 
-    try:
-        response = ''
-        response = recognise("en_US", ['yes', 'no'], 10)
-        if response.transcript == "yes":
-            rospy.loginfo("Yes")
-            speechSay("Ok, I will remember that")
-            return user_name
-        else:
-            rospy.loginfo("No")
-            speechSay("Let's try that again!")
-            userSave()
-    except rospy.ServiceException as e:
-        print("Service call failed: %s" % e)
+    if confirmation_final == "yes":
+        print("Saving Name")
+        try:
+            speechSay("Saving Name")
+        except rospy.ServiceException as e:
+            print("Service call failed: %s" % e)
+        return confirmation_final
+    else:
+        print("Name not saved")
+        try:
+            speechSay("Name not saved")
+        except rospy.ServiceException as e:
+            print("Service call failed: %s" % e)
+        return userSave()
