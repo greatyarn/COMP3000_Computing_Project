@@ -53,9 +53,7 @@ def userSave():
 
     speechSay("Recording complete")
 
-    # print("Is this the right name?")
-    # speechSay("Hello %s, Is this the right name?" % user_name.transcript)
-    # rospy.sleep(5)
+    user_name = ''
 
     # try:
     #     confirmation = ''
@@ -78,3 +76,13 @@ def userSave():
         audio = r.record(source)  # read the entire audio file
 
         print("Transcription: " + r.recognize_google(audio))
+
+    print("Is this the right name?")
+    user_name = r.recognize_google(audio)
+
+    try:
+        speechSay("Hello %s, Is this the right name?" % user_name.transcript)
+    except rospy.ServiceException as e:
+        print("Service call failed: %s" % e)
+
+    rospy.sleep(5)
