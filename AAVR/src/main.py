@@ -11,8 +11,8 @@ if __name__ == '__main__':
     print("Starting AAVR")
     rospy.init_node('AAVR')
 
-    user_name = userSave.userSave()
-    email_address = mailSave.mailSave()
+    user_name = userSave()
+    email_address = mailSave()
 
     otp = otpCreate()
 
