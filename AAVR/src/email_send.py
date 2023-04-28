@@ -19,21 +19,17 @@ def emailSend(user_name, otp):
     subject = "Hello! Here is the OTP that you requested " + user_name
 
     # Email Body
-    body = "Your OTP is " + str(otp) + \
-        "Please say this OTP to verify your account to the robot once requested. Thank you very much!"
+    body = "Your OTP is " + \
+        str(otp) + "\nPlease say this OTP to verify your account to the robot once requested. Thank you very much!"
 
     try:
         # SMTP
         server = smtplib.SMTP('smtp.gmail.com', 587)
         print("Connection to mail server established")
-        # server.ehlo()
-        print("a")
         server.starttls()
-        print("b")
         server.login(email_address, password)
-        print("c")
-        server.sendmail(email_address, email_address_receiver, subject + body)
-        print("D")
+        server.sendmail(email_address, email_address_receiver,
+                        subject + "\n" + body)
         server.quit()
     except Exception as E:
         print(str(E))
