@@ -37,6 +37,11 @@ def confirmation(prompt):
     rospy.Subscriber('/qt_respeaker_app/channel0',
                      AudioData, channel_callback, wf)
 
+    try:
+        speechSay(prompt)
+    except rospy.ServiceException as e:
+        print("Service call failed: %s" % e)
+
     print("Recording confirmation...")
     rospy.sleep(5)
 
