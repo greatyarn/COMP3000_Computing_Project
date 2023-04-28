@@ -24,7 +24,54 @@ print("Waiting for service to be available")
 rospy.wait_for_service('/qt_robot/speech/say')
 rospy.wait_for_service('/qt_robot/speech/recognize')
 
-confirmation = False
+######################################################################
+# confirmation starts here (Yes or No)
+
+
+def confirmation(prompt):
+    wf = wave.open(prompt + ".wav", 'wb')
+    wf.setnchannels(AUDIO_CHANNELS)
+    wf.setsampwidth(AUDIO_WIDTH)
+    wf.setframerate(AUDIO_RATE)
+    # Channel 0 is used because it is the processed audio from the microphone
+    rospy.Subscriber('/qt_respeaker_app/channel0',
+                     AudioData, channel_callback, wf)
+
+    print("Recording confirmation...")
+    rospy.sleep(5)
+
+    confirmation = ''
+
+    AUDIO_FILE = prompt + ".wav"
+    r = sr.Recognizer()
+    with sr.AudioFile(AUDIO_FILE) as source:
+        audio = r.record(source)  # read the entire audio file
+
+        print("Transcription: " + r.recognize_google(audio))
+        confirmation = r.recognize_google(audio)
+        confirmation_final = confirmation.strip()
+
+    if "yes" in confirmation_final:
+        print(prompt + " confirmed")
+        try:
+            speechSay(prompt + " confirmed")
+        except rospy.ServiceException as e:
+            print("Service call failed: %s" % e)
+        return True
+    elif "no" in confirmation_final:
+        print(prompt + " not confirmed")
+        try:
+            speechSay(prompt + " not confirmed")
+        except rospy.ServiceException as e:
+            print("Service call failed: %s" % e)
+            return False
+    else:
+        print(prompt + " not confirmed")
+        try:
+            speechSay(prompt + " not confirmed due to invalid confirmation")
+        except rospy.ServiceException as e:
+            print("Service call failed: %s" % e)
+            return False
 
 
 def channel_callback(msg, wf):
@@ -115,54 +162,6 @@ def mailSave():
         return mailCheck
     else:
         mailSave()
-
-######################################################################
-    # confirmation starts here (Yes or No)
-
-    def confirmation(prompt):
-        wf = wave.open(prompt + ".wav", 'wb')
-        wf.setnchannels(AUDIO_CHANNELS)
-        wf.setsampwidth(AUDIO_WIDTH)
-        wf.setframerate(AUDIO_RATE)
-        # Channel 0 is used because it is the processed audio from the microphone
-        rospy.Subscriber('/qt_respeaker_app/channel0',
-                         AudioData, channel_callback, wf)
-
-        print("Recording confirmation...")
-        rospy.sleep(5)
-
-        confirmation = ''
-
-        AUDIO_FILE = prompt + ".wav"
-        r = sr.Recognizer()
-        with sr.AudioFile(AUDIO_FILE) as source:
-            audio = r.record(source)  # read the entire audio file
-
-            print("Transcription: " + r.recognize_google(audio))
-            confirmation = r.recognize_google(audio)
-            confirmation_final = confirmation.strip()
-
-        if "yes" in confirmation_final:
-            print(prompt + " confirmed")
-            try:
-                speechSay(prompt + " confirmed")
-            except rospy.ServiceException as e:
-                print("Service call failed: %s" % e)
-            return True
-        elif "no" in confirmation_final:
-            print(prompt + " not confirmed")
-            try:
-                speechSay(prompt + " not confirmed")
-            except rospy.ServiceException as e:
-                print("Service call failed: %s" % e)
-                return False
-        else:
-            print(prompt + " not confirmed")
-            try:
-                speechSay(prompt + " not confirmed due to invalid confirmation")
-            except rospy.ServiceException as e:
-                print("Service call failed: %s" % e)
-                return False
 
 
 def main():
