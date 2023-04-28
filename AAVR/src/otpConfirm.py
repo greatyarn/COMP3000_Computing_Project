@@ -62,6 +62,9 @@ def confirmOTP(otp):
     otpRec = otpRec.replace("o", "0")
     otpRec = otpRec.replace("O", "0")
 
+    print("OTP: " + otp)
+    print("OTP Received: " + otpRec)
+
     if otpRec == otp:
         print("OTP Confirmed")
         return True
