@@ -13,9 +13,15 @@ if __name__ == '__main__':
 
     userSave()
     otpCreate()
+
+    user_name = userSave()
+    print(user_name)
+
+    otp = otpCreate()
+    print(otp)
     # upload_user()
 
-    print(userSave.user_name)
+    print(user_name, otp)
 
     emailSend()
 
