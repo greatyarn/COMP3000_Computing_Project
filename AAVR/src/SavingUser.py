@@ -24,6 +24,8 @@ print("Waiting for service to be available")
 rospy.wait_for_service('/qt_robot/speech/say')
 rospy.wait_for_service('/qt_robot/speech/recognize')
 
+confirmation_answer = False
+
 ######################################################################
 # confirmation starts here (Yes or No)
 
@@ -62,25 +64,31 @@ def confirmation(prompt):
             speechSay(prompt + " confirmed")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
-        return True
+        return confirmation_answer == True
     elif "no" in confirmation_final:
         print(prompt + " not confirmed")
         try:
             speechSay(prompt + " not confirmed")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
-            return False
+            return confirmation_answer == False
     else:
         print(prompt + " not confirmed")
         try:
             speechSay(prompt + " not confirmed due to invalid confirmation")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
-            return False
+            return confirmation_answer == False
 
+
+######################################################################
+# channel_callback starts here
 
 def channel_callback(msg, wf):
     wf.writeframes(msg.data)
+
+######################################################################
+# userSave starts here (Saving User Name)
 
 
 def userSave():
@@ -117,9 +125,9 @@ def userSave():
 
     confirmation(
         "Are you sure you want to save " + user_name + "?")
-    if confirmation == True:
+    if confirmation_answer == True:
         print("Saving User Name")
-        return
+        return user_name
     else:
         userSave()
 
@@ -162,7 +170,7 @@ def mailSave():
 
     confirmation(
         "Are you sure you want to save " + mailCheck + "?")
-    if confirmation == True:
+    if confirmation_answer == True:
         print("Saving Email")
         return mailCheck
     else:
