@@ -100,6 +100,8 @@ def userSave():
             speechSay("Saving Name")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
+        user_name = user_name.strip()
+        print(user_name)
         return user_name
     elif "no" in confirmation_final:
         print("Name not saved")
