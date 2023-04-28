@@ -4,7 +4,7 @@ from otpCreate import *
 from email_send import *
 
 
-def upload_user():
+def upload_user(user_name, otp):
 
     # Create a connection object to the PostgreSQL database server
     conn = psycopg2.connect(
