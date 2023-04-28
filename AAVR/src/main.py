@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     userSave()
     otpCreate()
-    upload_user()
+    # upload_user()
     emailSend(user_name, otp)
 
     try:
