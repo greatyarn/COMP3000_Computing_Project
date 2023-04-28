@@ -109,7 +109,7 @@ def userSave():
     else:
         print("Name not saved")
         try:
-            speechSay("Name not saved")
+            speechSay("Name not saved due to invalid confirmation")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
         return userSave()

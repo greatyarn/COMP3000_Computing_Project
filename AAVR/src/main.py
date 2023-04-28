@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import rospy
-import db as db
-from otpCreate import otpCreate
-from SavingUser import userSave
-from email_send import emailSend
+from db import *
+from SavingUser import *
+from otpCreate import *
+from email_send import *
 
 if __name__ == '__main__':
 
@@ -13,7 +13,8 @@ if __name__ == '__main__':
 
     userSave()
     otpCreate()
-    emailSend(user_name=userSave(), otp=otpCreate())
+    upload_user()
+    emailSend(user_name, otp)
 
     try:
         rospy.spin()

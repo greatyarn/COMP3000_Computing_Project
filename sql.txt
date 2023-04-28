@@ -13,3 +13,9 @@ REFERENCES answers (answer_id)
 
 INSERT INTO questions (question_id, question)
 VALUES(1, 'State your name'), (2, 'Say your phone number'),(3, 'Say your email');
+
+
+---------------------------------------------------
+CREATE TABLE users (
+user_id SERIAL PRIMARY KEY NOT NULL, email_address SERIAL NOT NULL, otp SERIAL NOT NULL
+)
