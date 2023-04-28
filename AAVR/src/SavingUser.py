@@ -24,6 +24,8 @@ print("Waiting for service to be available")
 rospy.wait_for_service('/qt_robot/speech/say')
 rospy.wait_for_service('/qt_robot/speech/recognize')
 
+confirmation = False
+
 
 def channel_callback(msg, wf):
     wf.writeframes(msg.data)
