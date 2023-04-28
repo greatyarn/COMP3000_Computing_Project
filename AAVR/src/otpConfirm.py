@@ -55,17 +55,16 @@ def confirmOTP(otp):
     with sr.AudioFile(AUDIO_FILE) as source:
         audio = r.record(source)  # read the entire audio file
 
-    try:
-        print("Processing...")
-        # Uses the VOSK library to convert speech to text
-        text = recognise(audio.get_raw_data())
-        print("You said " + text)
-        if text == otp:
-            print("OTP Confirmed")
-            return True
-        else:
-            print("OTP Incorrect")
-            return False
-    except Exception as e:
-        print("Exception: " + str(e))
+    print("Transcription: " + r.recognize_google(audio))
+    otpRec = r.recognize_google(audio)
+    otpRec = otpRec.strip()
+    otpRec = otpRec.replace(" ", "")
+    otpRec = otpRec.replace("o", "0")
+    otpRec = otpRec.replace("O", "0")
+
+    if otpRec == otp:
+        print("OTP Confirmed")
+        return True
+    else:
+        print("OTP Incorrect")
         return False
