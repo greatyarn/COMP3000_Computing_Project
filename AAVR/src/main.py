@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
     print(user_name, otp)
 
-    emailSend()
+    emailSend(user_name, otp)
 
     try:
         rospy.spin()
