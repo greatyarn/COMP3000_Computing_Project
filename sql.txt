@@ -17,7 +17,7 @@ VALUES(1, 'State your name'), (2, 'Say your phone number'),(3, 'Say your email')
 
 ---------------------------------------------------
 CREATE TABLE users (
-user_id SERIAL PRIMARY KEY NOT NULL, user_name text[30] NOT NULL, otp integer[6] NOT NULL
+user_id SERIAL PRIMARY KEY NOT NULL, user_name text NOT NULL, otp integer NOT NULL
 )
 
 
