@@ -49,7 +49,7 @@ def userSave():
                      AudioData, channel_callback, wf)
 
     print("Recording...")
-    rospy.sleep(3)
+    rospy.sleep(5)
 
     user_name = ''
 
@@ -81,7 +81,7 @@ def userSave():
                      AudioData, channel_callback, wf)
 
     print("Recording confirmation...")
-    rospy.sleep(3)
+    rospy.sleep(5)
 
     confirmation = ''
 
