@@ -3,7 +3,7 @@ import random
 
 def otpCreate():
     print("Creating OTP")
-    otp = int
+    otp = ''
 
     # Create a for loop that will run 6 times
     for i in range(6):
@@ -13,7 +13,7 @@ def otpCreate():
         # Add the value of num to the end of the otp variable
         otp += str(num)
 
-    return otp
+    return int(otp)
 
 
 # print(otpCreate())
