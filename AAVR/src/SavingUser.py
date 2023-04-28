@@ -33,14 +33,11 @@ confirmation_email = False
 
 def confirmation(prompt):
 
-    confirmation_user = False
-    confirmation_email = False
-
     wf = wave.open(prompt + ".wav", 'wb')
     wf.setnchannels(AUDIO_CHANNELS)
     wf.setsampwidth(AUDIO_WIDTH)
     wf.setframerate(AUDIO_RATE)
-    # Channel 0 is used because it is the processed audio from the microphone
+
     rospy.Subscriber('/qt_respeaker_app/channel0',
                      AudioData, channel_callback, wf)
 
@@ -69,21 +66,21 @@ def confirmation(prompt):
             speechSay("confirmed")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
-        return confirmation_user == True and confirmation_email == True
+        return True
     elif "no" in confirmation_final:
         print(prompt + " not confirmed")
         try:
             speechSay("not confirmed")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
-            return confirmation_email == False and confirmation_user == False
+        return False
     else:
-        print(prompt + "not confirmed")
+        print(prompt + " not confirmed due to invalid confirmation")
         try:
             speechSay("not confirmed due to invalid confirmation")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
-            return confirmation_email == False and confirmation_user == False
+        return False
 
 
 ######################################################################
