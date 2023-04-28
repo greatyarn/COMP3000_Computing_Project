@@ -4,6 +4,7 @@ from db import *
 from SavingUser import *
 from otpCreate import *
 from email_send import *
+from otpConfirm import *
 
 if __name__ == '__main__':
 
@@ -15,12 +16,11 @@ if __name__ == '__main__':
     otp = otpCreate()
 
     print(user_name, otp)  # For testing purposes
-    print(type(user_name)) # Testing Purposes
+    print(type(user_name))  # Testing Purposes
 
     upload_user(user_name, otp)
     emailSend(user_name, otp)
-    
-
+    confirmOTP(otp)
 
     try:
         rospy.spin()
