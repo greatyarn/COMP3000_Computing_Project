@@ -15,9 +15,9 @@ if __name__ == '__main__':
     otpCreate()
     # upload_user()
 
-    print(otpCreate.otp)
+    print(otp)
 
-    emailSend(userSave.user_name, otpCreate.otp)
+    emailSend()
 
     try:
         rospy.spin()
