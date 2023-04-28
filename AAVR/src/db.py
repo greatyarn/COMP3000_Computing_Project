@@ -21,6 +21,9 @@ def upload_user(user_name, otp):
     user_name = str(user_name)
     otp = int(otp)
 
+    print(type(user_name))  # Testing Purposes
+    print("User Name by db.py: " + user_name)
+
     # upload user data
     cursor.execute(
         "INSERT INTO users (user_name, otp) VALUES (%s, %s)", (user_name, otp))
