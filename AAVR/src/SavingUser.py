@@ -24,13 +24,18 @@ print("Waiting for service to be available")
 rospy.wait_for_service('/qt_robot/speech/say')
 rospy.wait_for_service('/qt_robot/speech/recognize')
 
-confirmation_answer = False
+confirmation_user = False
+confirmation_email = False
 
 ######################################################################
 # confirmation starts here (Yes or No)
 
 
 def confirmation(prompt):
+
+    confirmation_user = False
+    confirmation_email = False
+
     wf = wave.open(prompt + ".wav", 'wb')
     wf.setnchannels(AUDIO_CHANNELS)
     wf.setsampwidth(AUDIO_WIDTH)
@@ -64,21 +69,21 @@ def confirmation(prompt):
             speechSay(prompt + " confirmed")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
-        return confirmation_answer == True
+        return confirmation_user == True and confirmation_email == True
     elif "no" in confirmation_final:
         print(prompt + " not confirmed")
         try:
             speechSay(prompt + " not confirmed")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
-            return confirmation_answer == False
+            return confirmation_email == False and confirmation_user == False
     else:
         print(prompt + " not confirmed")
         try:
             speechSay(prompt + " not confirmed due to invalid confirmation")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
-            return confirmation_answer == False
+            return confirmation_email == False and confirmation_user == False
 
 
 ######################################################################
@@ -125,7 +130,7 @@ def userSave():
 
     confirmation(
         "Are you sure you want to save " + user_name + "?")
-    if confirmation_answer == True:
+    if confirmation_user == True:
         print("Saving User Name")
         return user_name
     else:
@@ -170,7 +175,7 @@ def mailSave():
 
     confirmation(
         "Are you sure you want to save " + mailCheck + "?")
-    if confirmation_answer == True:
+    if confirmation_email == True:
         print("Saving Email")
         return mailCheck
     else:
