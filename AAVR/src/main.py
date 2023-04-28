@@ -15,7 +15,7 @@ if __name__ == '__main__':
     otpCreate()
     # upload_user()
 
-    print(otp)
+    print(userSave.user_name)
 
     emailSend()
 
