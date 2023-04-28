@@ -53,7 +53,7 @@ def userSave():
 
     user_name = ''
 
-    AUDIO_FILE = temp + ".wav"
+    AUDIO_FILE = temp + "STATE_NAME.wav"
     r = sr.Recognizer()
     with sr.AudioFile(AUDIO_FILE) as source:
         audio = r.record(source)  # read the entire audio file
@@ -83,7 +83,7 @@ def userSave():
 
     confirmation = ''
 
-    AUDIO_FILE = temp2 + ".wav"
+    AUDIO_FILE = temp2 + "CONFIRMATION.wav"
     r = sr.Recognizer()
     with sr.AudioFile(AUDIO_FILE) as source:
         audio = r.record(source)  # read the entire audio file
