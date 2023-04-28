@@ -48,7 +48,7 @@ def confirmOTP(otp):
                      AudioData, channel_callback, wf)
 
     print("Recording...")
-    rospy.sleep(10)
+    rospy.sleep(20)  # 20 seconds to record the OTP
 
     AUDIO_FILE = temp + "otpconfirm.wav"
     r = sr.Recognizer()
