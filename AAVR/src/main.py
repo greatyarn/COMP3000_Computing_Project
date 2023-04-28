@@ -21,6 +21,8 @@ if __name__ == '__main__':
 
     emailSend(user_name, otp)
 
+    
+
     try:
         rospy.spin()
     except KeyboardInterrupt:

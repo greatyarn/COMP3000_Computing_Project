@@ -7,6 +7,7 @@ from qt_vosk_app.srv import speech_recognize
 from audio_common_msgs.msg import AudioData
 from os import path
 from pydub import AudioSegment
+from db import *
 
 # Define ROS Services
 print("Defining ROS Services")
@@ -30,15 +31,15 @@ def channel_callback(msg, wf):
 
 def userSave():
     print("Saving UserName")
-    temp = str(uuid.uuid4())
-    temp2 = str(uuid.uuid4())
+    nameSpeak = str(uuid.uuid4())
+    user_name = str
 
     try:
         speechSay("State your name")
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
 
-    wf = wave.open(temp + "STATE_NAME.wav", 'wb')
+    wf = wave.open(nameSpeak + "STATE_NAME.wav", 'wb')
     wf.setnchannels(AUDIO_CHANNELS)
     wf.setsampwidth(AUDIO_WIDTH)
     wf.setframerate(AUDIO_RATE)
@@ -49,9 +50,7 @@ def userSave():
     print("Recording...")
     rospy.sleep(5)
 
-    user_name = str
-
-    AUDIO_FILE = temp + "STATE_NAME.wav"
+    AUDIO_FILE = nameSpeak + "STATE_NAME.wav"
     r = sr.Recognizer()
     with sr.AudioFile(AUDIO_FILE) as source:
         audio = r.record(source)  # read the entire audio file
@@ -62,15 +61,28 @@ def userSave():
         user_name = ''.join(user_name)  # remove spaces
         print(user_name)
 
-    # Confirmation starts here (Yes or No)
+    userCheck = confirmation(
+        "Are you sure you want to save " + user_name + "?")
+    if userCheck == "Yes":
+        print("Saving User Name")
+        return user_name
+    else:
+        userSave()
+
+##########################################################################################
+
+
+def mailSave():
+
+    mailSpeak = str
+    mailCheck = str(uuid.uuid4())
 
     try:
-        speechSay("Hello %s, Is this the right name?" % user_name)
-        print("Confirming Name")
+        speechSay("State your email without @")
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
 
-    wf = wave.open(temp2 + "CONFIRMATION.wav", 'wb')
+    wf = wave.open(mailSpeak + "mailSpeak.wav", 'wb')
     wf.setnchannels(AUDIO_CHANNELS)
     wf.setsampwidth(AUDIO_WIDTH)
     wf.setframerate(AUDIO_RATE)
@@ -78,42 +90,80 @@ def userSave():
     rospy.Subscriber('/qt_respeaker_app/channel0',
                      AudioData, channel_callback, wf)
 
-    print("Recording confirmation...")
+    print("Recording...")
     rospy.sleep(5)
 
-    confirmation = ''
-
-    AUDIO_FILE = temp2 + "CONFIRMATION.wav"
+    AUDIO_FILE = mailCheck + "mailCheck.wav"
     r = sr.Recognizer()
     with sr.AudioFile(AUDIO_FILE) as source:
         audio = r.record(source)  # read the entire audio file
 
         print("Transcription: " + r.recognize_google(audio))
-        confirmation = r.recognize_google(audio)
-        confirmation_final = confirmation.strip()
+        mailCheck = r.recognize_google(audio)
+        mailCheck = mailCheck.strip()
+        mailCheck = ''.join(mailCheck)  # remove spaces
+        # join any words together that are split by spaces
 
-    if "yes" in confirmation_final:
-        print("Saving Name")
-        try:
-            speechSay("Saving Name")
-        except rospy.ServiceException as e:
-            print("Service call failed: %s" % e)
-        user_name = user_name.strip()
-        # If user_name is an array, make it a string
-        if type(user_name) == list:
-            user_name = user_name[0]
-        return str(user_name)
-    elif "no" in confirmation_final:
-        print("Name not saved")
-        try:
-            speechSay("Name not saved")
-        except rospy.ServiceException as e:
-            print("Service call failed: %s" % e)
-            return userSave()
+        print(mailCheck)
+
+    mailCheck = confirmation(
+        "Are you sure you want to save " + mailCheck + "?")
+    if mailCheck == "Yes":
+        print("Saving Email")
+        return mailCheck
     else:
-        print("Name not saved")
-        try:
-            speechSay("Name not saved due to invalid confirmation")
-        except rospy.ServiceException as e:
-            print("Service call failed: %s" % e)
-            return userSave()
+        mailSave()
+
+######################################################################
+    # confirmation starts here (Yes or No)
+
+    def confirmation(prompt):
+        wf = wave.open(prompt + ".wav", 'wb')
+        wf.setnchannels(AUDIO_CHANNELS)
+        wf.setsampwidth(AUDIO_WIDTH)
+        wf.setframerate(AUDIO_RATE)
+        # Channel 0 is used because it is the processed audio from the microphone
+        rospy.Subscriber('/qt_respeaker_app/channel0',
+                         AudioData, channel_callback, wf)
+
+        print("Recording confirmation...")
+        rospy.sleep(5)
+
+        confirmation = ''
+
+        AUDIO_FILE = prompt + ".wav"
+        r = sr.Recognizer()
+        with sr.AudioFile(AUDIO_FILE) as source:
+            audio = r.record(source)  # read the entire audio file
+
+            print("Transcription: " + r.recognize_google(audio))
+            confirmation = r.recognize_google(audio)
+            confirmation_final = confirmation.strip()
+
+        if "yes" in confirmation_final:
+            print(prompt + " confirmed")
+            try:
+                speechSay(prompt + " confirmed")
+            except rospy.ServiceException as e:
+                print("Service call failed: %s" % e)
+            return True
+        elif "no" in confirmation_final:
+            print(prompt + " not confirmed")
+            try:
+                speechSay(prompt + " not confirmed")
+            except rospy.ServiceException as e:
+                print("Service call failed: %s" % e)
+                return False
+        else:
+            print(prompt + " not confirmed")
+            try:
+                speechSay(prompt + " not confirmed due to invalid confirmation")
+            except rospy.ServiceException as e:
+                print("Service call failed: %s" % e)
+                return False
+
+
+def main():
+    rospy.init_node('saving_user')
+    userSave()
+    mailSave()
