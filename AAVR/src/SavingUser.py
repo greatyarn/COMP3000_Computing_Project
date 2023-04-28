@@ -49,7 +49,7 @@ def userSave():
     print("Recording...")
     rospy.sleep(5)
 
-    user_name = ''
+    user_name = str
 
     AUDIO_FILE = temp + "STATE_NAME.wav"
     r = sr.Recognizer()

@@ -1,11 +1,9 @@
 import random
 
-global otp
-
 
 def otpCreate():
     print("Creating OTP")
-    otp = ""
+    otp = int
 
     # Create a for loop that will run 6 times
     for i in range(6):
