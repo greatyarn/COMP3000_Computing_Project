@@ -5,8 +5,7 @@ import speech_recognition as sr
 from qt_robot_interface.srv import speech_say
 from qt_vosk_app.srv import speech_recognize
 from audio_common_msgs.msg import AudioData
-from os import path
-from pydub import AudioSegment
+
 
 global user_name
 

@@ -5,8 +5,7 @@ import speech_recognition as sr
 from qt_robot_interface.srv import speech_say
 from qt_vosk_app.srv import speech_recognize
 from audio_common_msgs.msg import AudioData
-from os import path
-from pydub import AudioSegment
+
 
 # Define ROS Services
 print("Defining ROS Services")
@@ -23,13 +22,10 @@ print("Waiting for service to be available")
 rospy.wait_for_service('/qt_robot/speech/say')
 rospy.wait_for_service('/qt_robot/speech/recognize')
 
-# Confirm the OTP
-
-
 def channel_callback(msg, wf):
     wf.writeframes(msg.data)
 
-
+# Confirm the OTP
 def confirmOTP(otp):
     print("Confirming OTP")
     temp = str(uuid.uuid4())
@@ -69,7 +65,12 @@ def confirmOTP(otp):
 
     if int(otpRec) == int(otp):
         print("OTP Confirmed")
+        speechSay("OTP Confirmed")
+
         return True
     else:
         print("OTP Incorrect")
+        speechSay("OTP Incorrect")
+        # TODO - Add a way to re-enter the OTP
+
         return False
