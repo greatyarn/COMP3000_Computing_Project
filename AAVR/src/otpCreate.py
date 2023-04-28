@@ -13,7 +13,6 @@ def otpCreate():
         # Add the value of num to the end of the otp variable
         otp += str(num)
 
-
     return int(otp)
 
 
