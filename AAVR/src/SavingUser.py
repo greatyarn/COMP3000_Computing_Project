@@ -119,7 +119,7 @@ def userSave():
         "Are you sure you want to save " + user_name + "?")
     if confirmation == True:
         print("Saving User Name")
-        return user_name
+        return
     else:
         userSave()
 
@@ -167,9 +167,3 @@ def mailSave():
         return mailCheck
     else:
         mailSave()
-
-
-def main():
-    rospy.init_node('saving_user')
-    userSave()
-    mailSave()
