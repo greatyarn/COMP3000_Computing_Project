@@ -40,7 +40,7 @@ def userSave():
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
 
-    wf = wave.open(temp + ".wav", 'wb')
+    wf = wave.open(temp + "STATE_NAME.wav", 'wb')
     wf.setnchannels(AUDIO_CHANNELS)
     wf.setsampwidth(AUDIO_WIDTH)
     wf.setframerate(AUDIO_RATE)
@@ -70,7 +70,7 @@ def userSave():
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
 
-    wf = wave.open(temp2 + ".wav", 'wb')
+    wf = wave.open(temp2 + "CONFIRMATION.wav", 'wb')
     wf.setnchannels(AUDIO_CHANNELS)
     wf.setsampwidth(AUDIO_WIDTH)
     wf.setframerate(AUDIO_RATE)
@@ -83,7 +83,7 @@ def userSave():
 
     confirmation = ''
 
-    AUDIO_FILE = temp + ".wav"
+    AUDIO_FILE = temp2 + ".wav"
     r = sr.Recognizer()
     with sr.AudioFile(AUDIO_FILE) as source:
         audio = r.record(source)  # read the entire audio file
