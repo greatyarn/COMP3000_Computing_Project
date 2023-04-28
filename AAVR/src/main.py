@@ -18,8 +18,9 @@ if __name__ == '__main__':
     print(type(user_name)) # Testing Purposes
 
     upload_user(user_name, otp)
-
     emailSend(user_name, otp)
+    
+
 
     try:
         rospy.spin()

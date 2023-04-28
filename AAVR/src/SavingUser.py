@@ -36,7 +36,7 @@ def userSave():
     temp2 = str(uuid.uuid4())
 
     try:
-        speechSay("State your email address please without the @")
+        speechSay("State your name")
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
 
