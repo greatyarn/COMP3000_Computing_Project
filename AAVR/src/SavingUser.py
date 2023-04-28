@@ -66,21 +66,21 @@ def confirmation(prompt):
     if "yes" in confirmation_final:
         print(prompt + " confirmed")
         try:
-            speechSay(prompt + " confirmed")
+            speechSay("confirmed")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
         return confirmation_user == True and confirmation_email == True
     elif "no" in confirmation_final:
         print(prompt + " not confirmed")
         try:
-            speechSay(prompt + " not confirmed")
+            speechSay("not confirmed")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
             return confirmation_email == False and confirmation_user == False
     else:
-        print(prompt + " not confirmed")
+        print(prompt + "not confirmed")
         try:
-            speechSay(prompt + " not confirmed due to invalid confirmation")
+            speechSay("not confirmed due to invalid confirmation")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
             return confirmation_email == False and confirmation_user == False
