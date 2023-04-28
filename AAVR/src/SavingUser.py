@@ -82,9 +82,8 @@ def confirmation(prompt):
 def channel_callback(msg, wf):
     wf.writeframes(msg.data)
 
-
 def userSave():
-    print("Saving UserName")
+    print("Saving UserName Starting Here")
     nameSpeak = str(uuid.uuid4())
     user_name = str
 

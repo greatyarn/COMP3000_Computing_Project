@@ -11,7 +11,9 @@ if __name__ == '__main__':
     print("Starting AAVR")
     rospy.init_node('AAVR')
 
-    user_name = userSave()
+    user_name = userSave.userSave()
+    email_address = mailSave.mailSave()
+
     otp = otpCreate()
 
     print(user_name, otp)  # For testing purposes
@@ -20,8 +22,6 @@ if __name__ == '__main__':
     upload_user(user_name, otp)
 
     emailSend(user_name, otp)
-
-    
 
     try:
         rospy.spin()
