@@ -14,6 +14,7 @@ if __name__ == '__main__':
     userSave()
     otpCreate()
     # upload_user()
+    print(user_name, otp)
     emailSend(user_name, otp)
 
     try:
