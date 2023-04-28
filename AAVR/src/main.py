@@ -15,6 +15,7 @@ if __name__ == '__main__':
     otp = otpCreate()
 
     print(user_name, otp)  # For testing purposes
+    print(type(user_name))  # Testing Purposes
 
     upload_user(user_name, otp)
 

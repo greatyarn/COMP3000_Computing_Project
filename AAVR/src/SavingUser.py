@@ -102,7 +102,7 @@ def userSave():
         # If user_name is an array, make it a string
         if type(user_name) == list:
             user_name = user_name[0]
-        return user_name
+        return str(user_name)
     elif "no" in confirmation_final:
         print("Name not saved")
         try:
