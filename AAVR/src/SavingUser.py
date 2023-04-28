@@ -82,6 +82,7 @@ def confirmation(prompt):
 def channel_callback(msg, wf):
     wf.writeframes(msg.data)
 
+
 def userSave():
     print("Saving UserName Starting Here")
     nameSpeak = str(uuid.uuid4())
@@ -114,9 +115,9 @@ def userSave():
         user_name = ''.join(user_name)  # remove spaces
         print(user_name)
 
-    userCheck = confirmation(
+    confirmation(
         "Are you sure you want to save " + user_name + "?")
-    if userCheck == "Yes":
+    if confirmation == True:
         print("Saving User Name")
         return user_name
     else:
@@ -159,9 +160,9 @@ def mailSave():
 
         print(mailCheck)
 
-    mailCheck = confirmation(
+    confirmation(
         "Are you sure you want to save " + mailCheck + "?")
-    if mailCheck == "Yes":
+    if confirmation == True:
         print("Saving Email")
         return mailCheck
     else:
