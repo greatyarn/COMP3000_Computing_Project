@@ -8,8 +8,6 @@ from audio_common_msgs.msg import AudioData
 from os import path
 from pydub import AudioSegment
 
-global user_name
-
 # Define ROS Services
 print("Defining ROS Services")
 speechSay = rospy.ServiceProxy('/qt_robot/speech/say', speech_say)
@@ -60,14 +58,14 @@ def userSave():
 
         print("Transcription: " + r.recognize_google(audio))
         user_name = r.recognize_google(audio)
-        confirmation_final = user_name.strip()
-        confirmation_final = ''.join(confirmation_final)  # remove spaces
-        print(confirmation_final)
+        user_name = user_name.strip()
+        user_name = ''.join(user_name)  # remove spaces
+        print(user_name)
 
     # Confirmation starts here (Yes or No)
 
     try:
-        speechSay("Hello %s, Is this the right name?" % confirmation_final)
+        speechSay("Hello %s, Is this the right name?" % user_name)
         print("Confirming Name")
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
