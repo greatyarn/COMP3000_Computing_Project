@@ -23,7 +23,7 @@ def upload_user(user_name, otp):
 
     # upload user data
     cursor.execute(
-        "INSERT INTO users (user_name, otp) VALUES (%s, %s)", (user_name, otp))
+        "INSERT INTO users (user_name, otp) VALUES (%s, %s)", ([user_name], otp))
 
     conn.commit()
     conn.close()
