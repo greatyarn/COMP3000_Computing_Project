@@ -18,6 +18,9 @@ def upload_user(user_name, otp):
     # Create a cursor object
     cursor = conn.cursor()
 
+    user_name = str.user_name
+    otp = int.otp
+
     # upload user data
     cursor.execute(
         "INSERT INTO users (user_name, otp) VALUES (%s, %s)", (user_name, otp))
