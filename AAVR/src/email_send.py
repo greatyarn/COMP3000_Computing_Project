@@ -19,7 +19,7 @@ def emailSend(user_name, otp):
     subject = "Hello! Here is the OTP that you requested " + user_name
 
     # Email Body
-    body = "Your OTP is " + str(otp) + \
+    body = "Your OTP is " + otp + \
         "Please say this OTP to verify your account to the robot once requested. Thank you very much!"
 
     try:
