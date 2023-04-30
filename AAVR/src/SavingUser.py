@@ -101,9 +101,7 @@ def userSave():
             print("Service call failed: %s" % e)
         user_name = user_name.strip()
         print(user_name)
-       # Temporary files are deleted
-        os.remove(temp + "STATE_NAME.wav")
-        os.remove(temp2 + "CONFIRMATION.wav")
+
         return user_name
     elif "no" in confirmation_final:
         print("Name not saved")
@@ -111,8 +109,6 @@ def userSave():
             speechSay("Name not saved")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
-        os.remove(temp + "STATE_NAME.wav")
-        os.remove(temp2 + "CONFIRMATION.wav")    
         return userSave()
     else:
         print("Name not saved")
@@ -120,6 +116,4 @@ def userSave():
             speechSay("Name not saved due to invalid confirmation")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
-        os.remove(temp + "STATE_NAME.wav")
-        os.remove(temp2 + "CONFIRMATION.wav") 
         return userSave()
