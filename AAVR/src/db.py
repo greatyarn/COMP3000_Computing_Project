@@ -21,13 +21,14 @@ def upload_user(user_name, otp, email_address):
 
     user_name = str(user_name)
     otp = int(otp)
+    email_address = str(email_address)
 
     print(type(user_name))  # Testing Purposes
     print("User Name by db.py: " + user_name)
 
     # upload user data
     cursor.execute(
-        "INSERT INTO users (user_name, email_address, otp) VALUES (%s, %s)", (user_name, email_address, otp))
+        "INSERT INTO users (user_name, email_address, otp) VALUES (%s, %s, %s)", (user_name, email_address, otp))
 
     conn.commit()
     conn.close()
