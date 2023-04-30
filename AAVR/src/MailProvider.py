@@ -32,7 +32,7 @@ def mailProvider(email_address):
     print("Appending email provider")
     try:
         speechSay(
-            "What is your email provider?, 1 for gmail, 2 for yahoo, 3 for outlook, 4 for hotmail, state without @ for other")
+            "What is your email provider?")
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
 
@@ -58,17 +58,18 @@ def mailProvider(email_address):
         print("Transcription: " + r.recognize_google(audio))
         email_provider = r.recognize_google(audio)
         confirmation_final = email_provider.strip()
+        confirmation_final = confirmation_final.lower()
 
-    if confirmation_final == "1":
+    if confirmation_final == "1" or confirmation_final == "one" or confirmation_final == "gmail":
         email_address = email_address + "@gmail.com"
         return email_address
-    elif confirmation_final == "2":
+    elif confirmation_final == "2" or confirmation_final == "two" or confirmation_final == "yahoo":
         email_address = email_address + "@yahoo.com"
         return email_address
-    elif confirmation_final == "3":
+    elif confirmation_final == "3" or confirmation_final == "three" or confirmation_final == "outlook":
         email_address = email_address + "@outlook.com"
         return email_address
-    elif confirmation_final == "4":
+    elif confirmation_final == "4" or confirmation_final == "four" or confirmation_final == "hotmail":
         email_address = email_address + "@hotmail.com"
         return email_address
     else:
