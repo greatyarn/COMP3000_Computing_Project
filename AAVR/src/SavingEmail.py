@@ -116,4 +116,3 @@ def emailSave():
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
         return emailSave()
-    
