@@ -58,7 +58,3 @@ def email_check(email_address):
     else:
         print("Email found")
         return True
-
-    conn.commit()
-    conn.close()
-    cursor.close()
