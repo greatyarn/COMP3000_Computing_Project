@@ -31,3 +31,4 @@ def upload_user(user_name, otp):
     conn.commit()
     conn.close()
     cursor.close()
+

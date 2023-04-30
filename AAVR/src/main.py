@@ -18,6 +18,8 @@ if __name__ == '__main__':
     print(user_name, otp)  # For testing purposes
     print(type(user_name))  # Testing Purposes
 
+    email_address = emailSend()
+
     upload_user(user_name, otp)
     emailSend(user_name, otp)
     confirmOTP(otp)
