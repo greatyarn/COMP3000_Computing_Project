@@ -45,7 +45,7 @@ def mailProvider(email_address):
                      AudioData, channel_callback, wf)
 
     print("Recording...")
-    rospy.sleep(5)
+    rospy.sleep(15)
 
     email_provider = ''
     email_address = email_address.replace(" ", "")
