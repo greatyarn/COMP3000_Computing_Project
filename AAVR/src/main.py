@@ -17,7 +17,7 @@ if __name__ == '__main__':
     user_name = userSave()
     otp = otpCreate()
     email_address = emailSave()
-    email_address_Confirmed = mailProvider()
+    email_address_Confirmed = mailProvider(email_address)
 
     print(user_name, otp)  # For testing purposes
     print(type(user_name))  # Testing Purposes

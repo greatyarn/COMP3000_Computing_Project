@@ -26,6 +26,7 @@ rospy.wait_for_service('/qt_robot/speech/recognize')
 def channel_callback(msg, wf):
     wf.writeframes(msg.data)
 
+
 def mailProvider(email_address):
     # Append the email provider to the email address based on number asked by the user
     print("Appending email provider")
@@ -35,7 +36,7 @@ def mailProvider(email_address):
     except rospy.ServiceException as e:
         print("Service call failed: %s" % e)
 
-    wf=wave.open("STATE_EMAIL_PROVIDER.wav", 'wb')
+    wf = wave.open("STATE_EMAIL_PROVIDER.wav", 'wb')
     wf.setnchannels(AUDIO_CHANNELS)
     wf.setsampwidth(AUDIO_WIDTH)
     wf.setframerate(AUDIO_RATE)
@@ -46,29 +47,30 @@ def mailProvider(email_address):
     print("Recording...")
     rospy.sleep(5)
 
-    email_provider=''
+    email_provider = ''
+    email_address = email_address.replace(" ", "")
 
-    AUDIO_FILE="STATE_EMAIL_PROVIDER.wav"
-    r=sr.Recognizer()
+    AUDIO_FILE = "STATE_EMAIL_PROVIDER.wav"
+    r = sr.Recognizer()
     with sr.AudioFile(AUDIO_FILE) as source:
-        audio=r.record(source)
+        audio = r.record(source)
 
         print("Transcription: " + r.recognize_google(audio))
-        email_provider=r.recognize_google(audio)
-        confirmation_final=email_provider.strip()
+        email_provider = r.recognize_google(audio)
+        confirmation_final = email_provider.strip()
 
     if confirmation_final == "1":
-        email_address=email_address + "@gmail.com"
+        email_address = email_address + "@gmail.com"
         return email_address
     elif confirmation_final == "2":
-        email_address=email_address + "@yahoo.com"
+        email_address = email_address + "@yahoo.com"
         return email_address
     elif confirmation_final == "3":
-        email_address=email_address + "@outlook.com"
+        email_address = email_address + "@outlook.com"
         return email_address
     elif confirmation_final == "4":
-        email_address=email_address + "@hotmail.com"
+        email_address = email_address + "@hotmail.com"
         return email_address
     else:
-        email_address=email_address + "@" + confirmation_final + ".com"
+        email_address = email_address + "@" + confirmation_final + ".com"
         return email_address
