@@ -90,11 +90,12 @@ def emailSave():
         print("Transcription: " + r.recognize_google(audio))
         confirmation = r.recognize_google(audio)
         confirmation_final = confirmation.strip()
+        confirmation_final = ''.join(confirmation_final)
 
     if "yes" in confirmation_final:
-        print("Saving Name")
+        print("Saving Email")
         try:
-            speechSay("Saving Name")
+            speechSay("Saving Email")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
         email_address = email_address.strip()
@@ -102,16 +103,17 @@ def emailSave():
 
         return email_address
     elif "no" in confirmation_final:
-        print("Name not saved")
+        print("Email not saved")
         try:
-            speechSay("Name not saved")
+            speechSay("Email not saved")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
         return emailSave()
     else:
-        print("Name not saved")
+        print("Email not saved")
         try:
-            speechSay("Name not saved due to invalid confirmation")
+            speechSay("Email not saved due to invalid confirmation")
         except rospy.ServiceException as e:
             print("Service call failed: %s" % e)
         return emailSave()
+    

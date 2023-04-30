@@ -4,6 +4,7 @@ from dotenv import load_dotenv, find_dotenv
 from SavingUser import *
 from otpCreate import *
 load_dotenv(find_dotenv())
+from SavingEmail import *
 
 
 def emailSend(user_name, otp):
@@ -13,7 +14,7 @@ def emailSend(user_name, otp):
     password = os.getenv("EMAILPASS")
 
     # Email Address for receiver is written here
-    email_address_receiver = os.getenv("EMAILSEND")
+    email_address_receiver = email_address
 
     # Email Subject
     subject = "Hello! Here is the OTP that you requested " + user_name
