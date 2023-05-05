@@ -24,16 +24,7 @@
 
 ## Project Vision
 
-The QTrobot is a toddler-like humanoid robot built by LuxAI. This project, Audio
-Authentication via Voice Recognition on QTrobot, or AAVR for short, is a software for
-patients who would like to allow for an easy way to authenticate themselves through
-robots with the use of their voice. This authentication process with the use of a human
-voice allows for patients to retrieve their medical records, which might contain their
-age, height, and weight. This method of authenticating by voice is safer and more
-convenient as it reduces the amount of human interaction that is needed, therefore
-allowing for an improvement of personal data security as a whole. With voice
-authentication, this allows for multiple different patient profiles to be set up
-conveniently.
+The QTrobot is a toddler-like humanoid robot built by LuxAI. This project, Audio Authentication via Voice Recognition on QTrobot, or AAVR for short, aims at providing two-factor authentication for the QTrobot which is a social robot that is originally used as an autism robot tutor for improving a child’s learning outcome at home (Qtrobot, n.d.) This authentication process with the use of a human voice and SMS allows for patients to retrieve their medical records, which might contain their age, height, and weight. This method of authenticating by voice is more convenient as it reduces the amount of human interaction that is needed.
 
 ---
 
