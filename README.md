@@ -35,27 +35,27 @@ cd ~/catkin_ws/src
 
 catkin_create_pkg AAVR rospy roscpp -D "AAVR"
 
-"These commands above allow to create the package"
+::These commands above allow to create the package
 
-"Within AAVR, copy all the files from the repository to the newly created folder."
+::Within AAVR, copy all the files from the repository to the newly created folder.
 
-"Within the repository folder in catkin_ws, run the requirements command with""
+::Within the repository folder in catkin_ws, run the requirements command with
 
 pip install -r requirements.txt
 
-"Run this to build the project
+::Run this to build the project
 
 catkin_make
 
-"Then, from the AAVR folder run
+::Then, from the AAVR folder run
 
 chmod +x /src/main.py
 
-"This is to give write access to the program.
+::This is to give write access to the program.
 
 rosrun AAVR main.py
 
-"This command then allows the program to run.""
+::This command then allows the program to run.
 ```
 
 ---
