@@ -31,31 +31,36 @@ The QTrobot is a toddler-like humanoid robot built by LuxAI. This project, Audio
 ## How to run the project
 
 ```batch
+::Creating the Package and installing dependencies
+::These commands allows you to create the package 
 cd ~/catkin_ws/src
-
 catkin_create_pkg AAVR rospy roscpp -D "AAVR"
-
-::These commands above allow to create the package
-
 ::Within AAVR, copy all the files from the repository to the newly created folder.
-
 ::Within the repository folder in catkin_ws, run the requirements command with
-
 pip install -r requirements.txt
 
+::Creating .env file
+::Command to create a blank .env file
+touch .env
+
+::Then, edit the file with this command
+nano .env
+
+::Template below for .env
+EMAILSEND="Write which email you would like to send from here"
+EMAILPASS="Write the email pass here, needs to be app password"
+COMPOSEUSER=root
+
+::Building and running project
 ::Run this to build the project
-
 catkin_make
-
 ::Then, from the AAVR folder run
-
 chmod +x /src/main.py
-
 ::This is to give write access to the program.
-
 rosrun AAVR main.py
-
 ::This command then allows the program to run.
+
+
 ```
 
 ---
