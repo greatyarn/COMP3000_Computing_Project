@@ -26,7 +26,7 @@ rospy.wait_for_service('/qt_robot/speech/recognize')
 def channel_callback(msg, wf):
     wf.writeframes(msg.data)
 
-
+# Save the email that user state
 def emailSave():
     print("Saving Email")
     temp = str(uuid.uuid4())
@@ -89,9 +89,10 @@ def emailSave():
 
         print("Transcription: " + r.recognize_google(audio))
         confirmation = r.recognize_google(audio)
-        confirmation_final = confirmation.strip()
+        confirmation_final = confirmation.strip() # Formatting
         confirmation_final = ''.join(confirmation_final)
 
+    # Confirmation phase
     if "yes" in confirmation_final:
         print("Saving Email")
         try:

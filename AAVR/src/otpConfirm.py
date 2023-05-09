@@ -25,7 +25,7 @@ rospy.wait_for_service('/qt_robot/speech/recognize')
 def channel_callback(msg, wf):
     wf.writeframes(msg.data)
 
-# Confirm the OTP
+# Confirm the OTP stated by user
 def confirmOTP(otp):
     print("Confirming OTP")
     temp = str(uuid.uuid4())
@@ -50,7 +50,8 @@ def confirmOTP(otp):
     r = sr.Recognizer()
     with sr.AudioFile(AUDIO_FILE) as source:
         audio = r.record(source)  # read the entire audio file
-
+    
+    # Formatting
     print("Transcription: " + r.recognize_google(audio))
     otpRec = r.recognize_google(audio)
     otpRec = otpRec.strip()

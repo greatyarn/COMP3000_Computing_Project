@@ -26,7 +26,7 @@ rospy.wait_for_service('/qt_robot/speech/recognize')
 def channel_callback(msg, wf):
     wf.writeframes(msg.data)
 
-
+# function to add email provider to email address
 def mailProvider(email_address):
     # Append the email provider to the email address based on number asked by the user
     print("Appending email provider")

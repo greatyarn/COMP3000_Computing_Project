@@ -4,7 +4,7 @@ from otpCreate import *
 from email_send import *
 from SavingEmail import *
 
-
+# Function to upload user to local database
 def upload_user(user_name, otp, email_address):
 
     # Create a connection object to the PostgreSQL database server
@@ -34,9 +34,9 @@ def upload_user(user_name, otp, email_address):
     conn.close()
     cursor.close()
 
-
+# Function to check email before uploading to local database to avoid duplicates
 def email_check(email_address):
-
+    # Create a connection object to the PostgreSQL database server
     conn = psycopg2.connect(
         host="localhost",
         port=5432,
@@ -44,9 +44,11 @@ def email_check(email_address):
         user="admin",
         password="admin"
     )
-
+    
+    # Create a cursor object
     cursor = conn.cursor()
 
+    # Checks email address
     EMAIL_ADDRESS = str(email_address)
 
     cursor.execute(

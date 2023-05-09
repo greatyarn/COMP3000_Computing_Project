@@ -19,9 +19,9 @@ if __name__ == '__main__':
     email_address = emailSave()
     email_address_Confirmed = mailProvider(email_address)
 
-    print(user_name, otp)  # For testing purposes
-    print(type(user_name))  # Testing Purposes
-    print(email_address_Confirmed)  # For testing purposes
+    # print(user_name, otp)  # For testing purposes
+    # print(type(user_name))  # Testing Purposes
+    # print(email_address_Confirmed)  # For testing purposes
 
     # Check if email exists in database
     if email_check(email_address_Confirmed) == True:

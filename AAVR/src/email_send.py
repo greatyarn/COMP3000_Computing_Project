@@ -6,7 +6,7 @@ from otpCreate import *
 load_dotenv(find_dotenv())
 from SavingEmail import *
 
-
+# Function to send email to the user
 def emailSend(user_name, otp):
 
     # Email Address for sender is written here

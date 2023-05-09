@@ -28,7 +28,7 @@ rospy.wait_for_service('/qt_robot/speech/recognize')
 def channel_callback(msg, wf):
     wf.writeframes(msg.data)
 
-
+# Save the user's name
 def userSave():
     print("Saving UserName")
     temp = str(uuid.uuid4())
@@ -59,12 +59,11 @@ def userSave():
 
         print("Transcription: " + r.recognize_google(audio))
         user_name = r.recognize_google(audio)
-        confirmation_final = user_name.strip()
+        confirmation_final = user_name.strip() # Formatting
         confirmation_final = ''.join(confirmation_final)  # remove spaces
         print(confirmation_final)
 
-    # Confirmation starts here (Yes or No)
-
+    # Confirmation phase
     try:
         speechSay("Hello %s, Is this the right name?" % confirmation_final)
         print("Confirming Name")
